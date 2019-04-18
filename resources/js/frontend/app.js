@@ -7,9 +7,20 @@
 
 import '../bootstrap';
 import '../plugins';
-import Vue from 'vue';
+import './vendor/circle-progress/circle-progress.min';
+import './vendor/cookie/jquery.cookie';
+import './vendor/bootstrap/footable';
+import './vendor/swiper/swiper';
+import 'vue-material/dist/vue-material.min.css'
 
-window.Vue = Vue;
+
+import Vue from 'vue';
+/* import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.min.css'
+import 'vue-material/dist/theme/default.css' */
+
+window.Vue = Vue; 
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -22,7 +33,9 @@ window.Vue = Vue;
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+/* Vue.component('example-component', require('./components/ExampleComponent.vue').default); */
+/*  Vue.component('dial-payment', require('./components/DialPaymentComponent.vue').default);  */
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,6 +43,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
+/* const app = new Vue({
     el: '#app'
 });
+ */
+
+

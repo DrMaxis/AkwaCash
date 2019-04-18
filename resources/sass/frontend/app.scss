@@ -9,5 +9,13 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+//Base Style
+@import 'base';
 // Pages
 @import 'pages/dashboard';
+
+// Vendor
+@import 'vendor/materializeicon/material-icons';
+@import 'vendor/animatecss/animate';
+@import 'vendor/swiper/swiper';
+@import 'vendor/bootstrap/footable';
