@@ -1,13 +1,17 @@
-    <!-- main header -->
-    <header class="main-header">
-        <div class="container-fluid">
+<!-- main header -->
+<header class="main-header">
+
+      
+
+    @auth
+    <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-auto px-0">
                     <button class="btn pink-gradient btn-icon" id="left-menu"><i
-                            class="material-icons">widgets</i></button>
+                                class="material-icons">widgets</i></button>
                     <a href="index.html" class="logo"><img src="img/logo-icon.png" alt=""><span
-                            class="text-hide-xs"><b>Akwa</b>Cash<br><span class="small">African Mobile Money</span></span>
-                    </a>
+                                class="text-hide-xs"><b>Akwa</b>Cash<br><span class="small">African Mobile Money</span></span>
+                        </a>
                     <form class="search-header">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search...">
@@ -15,53 +19,31 @@
                                 <button class="btn " type="button"><i class="material-icons">search</i></button>
                             </div>
                         </div>
-
+    
                     </form>
                 </div>
-
+    
                 <div class="col px-0 text-right">
-                    <button class="btn btn-search btn-icon header-color-secondary" type="button"><i
-                            class="material-icons">search</i></button>
-
+                   
+    
                     <div class="dropdown d-inline-block text-hide-xs">
-                        <a class="btn header-color-secondary btn-icon dropdown-toggle caret-none" href="#"
-                            role="button" id="dropdownmessage2" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            <figure class="avatar avatar-24 vm d-inline-block border"><img src="img/india.png"
-                                    alt=""></figure>
+                        <a class="btn header-color-secondary btn-icon dropdown-toggle caret-none" href="#" role="button" id="dropdownmessage2" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                         ({{ strtoupper(app()->getLocale()) }})
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownmessage2">
-                            <div class="dropdown-item">
-                                <figure class="avatar avatar-24 mr-2 vm d-inline-block"><img src="img/india.png"
-                                        alt=""></figure> India
-                            </div>
-                            <div class="dropdown-item">
-                                <figure class="avatar avatar-24 mr-2 vm d-inline-block"><img src="img/canada.png"
-                                        alt=""></figure> Canada
-                            </div>
-                            <div class="dropdown-item">
-                                <figure class="avatar avatar-24 mr-2 vm d-inline-block"><img
-                                        src="img/unitedstates.png" alt=""></figure> United States
-                            </div>
-                            <div class="dropdown-item">
-                                <figure class="avatar avatar-24 mr-2 vm d-inline-block"><img src="img/uk.png"
-                                        alt=""></figure> United Kingdom
-                            </div>
-                            <div class="dropdown-item">
-                                <figure class="avatar avatar-24 mr-2 vm d-inline-block"><img src="img/china.png"
-                                        alt=""></figure> China
-                            </div>
-                        </div>
+                        @include('includes.partials.lang')
+                        
                     </div>
+                  
+    
+    
                     <div class="dropdown d-inline-block">
-                        <a class="btn header-color-secondary btn-icon dropdown-toggle caret-none" href="#"
-                            role="button" id="dropdownmessage" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            <i class="material-icons">mail_outline</i>
-                            <span class="status-number bg-danger text-white">9+</span>
-                        </a>
-                        <div class="dropdown-menu notification-dropdown align-center arrow-top pt-0"
-                            aria-labelledby="dropdownmessage">
+                        <a class="btn header-color-secondary btn-icon dropdown-toggle caret-none" href="#" role="button" id="dropdownmessage" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons">mail_outline</i>
+                                <span class="status-number bg-danger text-white">9+</span>
+                            </a>
+                        <div class="dropdown-menu notification-dropdown align-center arrow-top pt-0" aria-labelledby="dropdownmessage">
                             <div class="arrow pink-gradient"></div>
                             <div class="pink-gradient py-3 text-center">
                                 <h5 class="mb-0">Messages</h5>
@@ -73,8 +55,7 @@
                                 </figure>
                                 <div class="media-body">
                                     <h5 class="mt-0">Alizee Johnson</h5>
-                                    <p class="mb-2">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                                        scelerisque ante sollicitudin.</p>
+                                    <p class="mb-2">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</p>
                                     <a href="">Reply</a>
                                     <a href="" class="ml-2">View</a>
                                 </div>
@@ -86,8 +67,8 @@
                                 <div class="media-body">
                                     <h5 class="my-0">Donald Costapor </h5>
                                     <small class="text-muted d-block mb-2">2:05 am</small>
-                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                        sollicitudin.</p>
+                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                                    </p>
                                 </div>
                             </a>
                             <a href="#" class="media pink-gradient-active">
@@ -96,20 +77,19 @@
                                 </figure>
                                 <div class="media-body">
                                     <h5 class="mt-0">Alizee McMohan <small class="text-muted float-right">4:05
-                                            am</small></h5>
-                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                        sollicitudin.</p>
+                                                am</small></h5>
+                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                                    </p>
                                 </div>
                             </a>
                         </div>
                     </div>
                     <div class="dropdown text-hide-lg d-inline-block">
-                        <a class="btn header-color-secondary btn-icon dropdown-toggle caret-none" href="#"
-                            role="button" id="dropdownnotification" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            <i class="material-icons">notifications_none</i>
-                            <span class="status-dot pink-gradient"></span>
-                        </a>
+                        <a class="btn header-color-secondary btn-icon dropdown-toggle caret-none" href="#" role="button" id="dropdownnotification"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons">notifications_none</i>
+                                <span class="status-dot pink-gradient"></span>
+                            </a>
                         <div class="dropdown-menu notification-dropdown" aria-labelledby="dropdownnotification">
                             <a href="#" class="media  pink-gradient-active new">
                                 <figure class="avatar avatar-40">
@@ -117,8 +97,8 @@
                                 </figure>
                                 <div class="media-body">
                                     <h5 class="mt-0">Media heading</h5>
-                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                        sollicitudin.</p>
+                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                                    </p>
                                 </div>
                             </a>
                             <a href="#" class="media  pink-gradient-active">
@@ -127,8 +107,8 @@
                                 </figure>
                                 <div class="media-body">
                                     <h5 class="mt-0">Media heading</h5>
-                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                        sollicitudin.</p>
+                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                                    </p>
                                 </div>
                             </a>
                             <a href="#" class="media  pink-gradient-active">
@@ -137,82 +117,112 @@
                                 </figure>
                                 <div class="media-body">
                                     <h5 class="mt-0">Media heading</h5>
-                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                        sollicitudin.</p>
+                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                                    </p>
                                 </div>
                             </a>
                         </div>
                     </div>
                     <div class="dropdown d-inline-block">
-                        <a class="btn header-color-secondary dropdown-toggle username" href="#" role="button"
-                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <figure class="userpic"><img src="img/user1.png" alt=""></figure>
-                            <h5 class="text-hide-xs">
-                                <small class="header-color-secondary">Welcome,</small>
-                                <span class="header-color-primary">John McMohan</span>
-                            </h5>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right profile-dropdown"
-                            aria-labelledby="dropdownMenuLink">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <a href="profile.html">
-                                        <figure class="avatar avatar-120 mx-auto my-3">
-                                            <img src="img/user1.png" alt="">
-                                        </figure>
-                                        <h5 class="card-title mb-2 header-color-primary">John McMohan</h5>
-                                        <h6 class="card-subtitle mb-3 header-color-secondary">South Africa</h6>
-                                    </a>
-                                    <p class="card-text">Some quick example text to build on the card title and make
-                                        up the bulk of the card's content.</p>
-                                    <button class="btn btn-sm pink-gradient border-0 mb-3">Edit</button>
-                                </div>
-                            </div>
-                            <a class="dropdown-item pink-gradient-active" href="javascript:void(0);"
-                                id="open-right-sidebar">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        Setting
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <div class="header-color-secondary ml-2"><i
-                                                class="material-icons vm">settings</i></div>
-                                    </div>
-                                </div>
+                            <a class="btn header-color-secondary dropdown-toggle username" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <figure class="userpic"><img src="img/user1.png" alt=""></figure>
+                                <h5 class="text-hide-xs">
+                                    <small class="header-color-secondary">Welcome,</small>
+                                    <span class="header-color-primary">{{ $logged_in_user->name }}</span>
+                                </h5>
                             </a>
-                            <div class="dropdown-divider m-0"></div>
-                            <a class="dropdown-item pink-gradient-active" href="javascript:void(0);">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        5458 <small class="header-color-secondary font-italic">Points
-                                            Collected</small>
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <i class="header-color-secondary material-icons vm">local_play</i>
+                            <div class="dropdown-menu dropdown-menu-right profile-dropdown" aria-labelledby="dropdownMenuLink">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <a href="profile.html">
+                                            <figure class="avatar avatar-120 mx-auto my-3">
+                                                <img src="img/user1.png" alt="">
+                                            </figure>
+                                            <h5 class="card-title mb-2 header-color-primary">{{ $logged_in_user->name }}</h5>
+                                            <h6 class="card-subtitle mb-3 header-color-secondary">South Africa</h6>
+                                        </a>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <button class="btn btn-sm pink-gradient border-0 mb-3">Edit</button>
                                     </div>
                                 </div>
-                            </a>
-                            <div class="dropdown-divider m-0"></div>
-                            <a class="dropdown-item pink-gradient-active" href="signin1.html">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        Logout
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <div class="text-danger ml-2"><i class="material-icons vm">exit_to_app</i>
+                               
+                                    @can('view backend')
+                                <a class="dropdown-item pink-gradient-active" href="{{ route('admin.dashboard') }}">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                                @lang('navs.frontend.user.administration')
+                                        </div>
+        
+                                        <div class="col-auto">
+                                            <div class="header-color-secondary ml-2"><i class="material-icons vm">settings</i></div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-
+                                </a>
+                                @endcan
+                                <div class="dropdown-divider m-0"></div>
+                                <a class="dropdown-item pink-gradient-active {{ active_class(Active::checkRoute('frontend.user.account')) }}" href="{{ route('frontend.user.account') }}">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                                @lang('navs.frontend.user.account')
+                                        </div>
+        
+                                        <div class="col-auto">
+                                            <div class="header-color-secondary ml-2"><i class="material-icons vm">settings</i></div>
+                                        </div>
+                                    </div>
+                                </a>
+                               
+                        
+                                <div class="dropdown-divider m-0"></div>
+                                <a class="dropdown-item pink-gradient-active" href="{{ route('frontend.auth.logout') }}">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                                @lang('navs.general.logout')
+                                        </div>
+        
+                                        <div class="col-auto">
+                                            <div class="text-danger ml-2"><i class="material-icons vm">exit_to_app</i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+        
+                            </div>
                         </div>
-                    </div>
+        
+    
+                </div>
+            </div>
+        </div>
+    @endauth
+
+    @guest
+    <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-auto pl-0">
+                    <button class="btn pink-gradient btn-icon" id="left-menu"><i class="material-icons">widgets</i></button>
+                    <a href="index.html" class="logo"><img src="img/logo-icon.png" alt=""><span class="text-hide-xs"><b>Akwa</b>Cash</span></a>
+                </div>
+                <div class="col-auto ml-auto">
+                    <a href="{{route('frontend.auth.login')}}" class="btn pink-gradient btn-sm rounded d-inline-block {{ active_class(Active::checkRoute('frontend.auth.login')) }}"><i class="material-icons">person</i>@lang('navs.frontend.login')</a>
+                    @if(config('access.registration'))
+                    <a href="{{route('frontend.auth.register')}}" class="btn pink-gradient btn-sm rounded d-inline-block {{ active_class(Active::checkRoute('frontend.auth.register')) }}"><i class="material-icons">person</i>@lang('navs.frontend.register')</a>
+                    @endif
 
                 </div>
             </div>
         </div>
-    </header>
-    <!-- main header ends -->
+
+    @endguest
+
+    
+
+
+    
+{{-- loged in --}}
+
+
+    
+</header>
+<!-- main header ends -->

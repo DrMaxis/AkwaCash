@@ -10,18 +10,14 @@ import '../plugins';
 import './vendor/circle-progress/circle-progress.min';
 import './vendor/cookie/jquery.cookie';
 import './vendor/bootstrap/footable';
-import './vendor/swiper/swiper';
-import 'vue-material/dist/vue-material.min.css'
-
-
+import './vendor/intlTelInput/utils';
 import Vue from 'vue';
-/* import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.min.css'
-import 'vue-material/dist/theme/default.css' */
-
+import  intlTelInput from 'intl-tel-input';
+import Swiper from 'swiper';
 window.Vue = Vue; 
-
-
+window.Swiper = Swiper;
+window.intlTelInput = intlTelInput;
+/* Vue.use(VueMaterial); */
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -34,8 +30,8 @@ window.Vue = Vue;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 /* Vue.component('example-component', require('./components/ExampleComponent.vue').default); */
-/*  Vue.component('dial-payment', require('./components/DialPaymentComponent.vue').default);  */
-
+/*  Vue.component('dial-payment', require('./components/DialPaymentComponent.vue').default);   */
+    
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -44,8 +40,6 @@ window.Vue = Vue;
  */
 
 /* const app = new Vue({
-    el: '#app'
+    el: '#dial-payment',
 });
- */
-
-
+  */

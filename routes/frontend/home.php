@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\User\AccountController;
 use App\Http\Controllers\Frontend\User\ProfileController;
 use App\Http\Controllers\Frontend\User\DashboardController;
+use App\Http\Controllers\Frontend\User\TransactionController;
 
 /*
  * Frontend Controllers
@@ -26,6 +27,9 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
 
         // User Account Specific
         Route::get('account', [AccountController::class, 'index'])->name('account');
+
+        // User Account Specific
+        Route::get('transactions', [TransactionController::class, 'index'])->name('transactions');
 
         // User Profile Specific
         Route::patch('profile/update', [ProfileController::class, 'update'])->name('profile.update');

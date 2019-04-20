@@ -32,12 +32,17 @@ class BaseUser extends Authenticatable implements AuditableInterface
         'first_name',
         'last_name',
         'email',
+        'username',
         'avatar_type',
         'avatar_location',
         'password',
         'password_changed_at',
         'active',
         'confirmation_code',
+        'phone_number',
+        'phone_number_changed_at',
+        'phone_number_confirmation_code',
+        'phone_number_confirmed',
         'confirmed',
         'timezone',
         'last_login_at',
@@ -65,6 +70,7 @@ class BaseUser extends Authenticatable implements AuditableInterface
         'password',
         'remember_token',
         'confirmation_code',
+        'phone_number_confirmation_code',
     ];
 
     /**
@@ -75,6 +81,7 @@ class BaseUser extends Authenticatable implements AuditableInterface
     protected $casts = [
         'active' => 'boolean',
         'confirmed' => 'boolean',
+        'phone_number_confirmed' => 'boolean',
         'to_be_logged_out' => 'boolean',
     ];
 
@@ -84,6 +91,7 @@ class BaseUser extends Authenticatable implements AuditableInterface
     protected $dates = [
         'last_login_at',
         'password_changed_at',
+        'phone_number_changed_at',
     ];
 
     /**

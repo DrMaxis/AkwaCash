@@ -1,221 +1,338 @@
-@extends('frontend.layouts.app')
-
-
-{{-- @lang('strings.frontend.welcome_to', ['place' => app_name()]) --}}
+@extends('frontend.layouts.app') {{-- @lang('strings.frontend.welcome_to', ['place' => app_name()]) --}} 
 @section('content')
-    <!-- content page -->
-    <div class="container-fluid mt-4 main-container">
-        <div class="row">
 
-                <!-- <div class="col-12 col-md-12">
-                        <div class="card mb-4 fullscreen">
-                            <div class="card-header">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h4 class="content-color-primary mb-0">My Cards</h4>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm daterange mr-2 d-none" name="daterange" value="01/01/2018 - 01/15/2018" />
-                                    <a href="javascript:void(0);" class="icon-circle icon-30 content-color-secondary fullscreenbtn">
-                                        <i class="material-icons ">crop_free</i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row align-items-center no-gutters">
-                                    <div class="col">
-                                        <div class="carosel swiper-location-carousel">
-                                            <div data-pagination='{"el": ".swiper-pagination"}' data-space-between="0" data-slides-per-view="auto" class="swiper-container swiper-init swiper-product">
-                                                <div class="swiper-pagination"></div>
-                                                <div class="swiper-wrapper">
-                                                    <div class="swiper-slide  card-carousel">
-                                                        <div class="pink-gradient p-3 debit-card">
-                                                            <h2 class="d-block">
-                                                                <i class="material-icons">local_play</i>
-                                                            </h2>
-                                                            <h4 class="mt-2 font-weight-normal">0000 0000 0000 0000</h4>
-                                                            <div class="row mt-3">
-                                                                <div class="col">
-                                                                    <h5 class="mb-0">John McMohan</h5>
-                                                                    <p class="mb-0 small">Card Holder</p>
-                                                                </div>
-                                                                <div class="col text-right">
-                                                                    <h5 class="mb-0">7/11</h5>
-                                                                    <p class="mb-0 small">Expiry</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                   
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div> -->
-            <div class="col-12 col-md-6">
-                <div class="card mb-4 fullscreen">
-                    <div class="card-header">
-                        <div class="media">
-                            <div class="media-body">
-                                <h4 class="content-color-primary mb-0">Account Balance</h4>
-                                <p class="content-color-secondary mb-0">GHS</p>
-                            </div>
-                            <a href="javascript:void(0);"
-                                class="icon-circle icon-30 content-color-secondary fullscreenbtn">
-                                <i class="material-icons ">crop_free</i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h1 class="mt-4"><span class="font-weight-light">$</span> 2053.19</h1>
-                        <p class="small mb-1 text-success "><i class="material-icons icon-sm">arrow_drop_up</i> $250
-                        </p>
-                    </div>
-                    <div class="card-footer border-top">
-                        <div class="media">
-                            <div class="media-body">
-                                <h5 class="content-color-primary mb-0">Latest Transaction</h5>
-                                <p class="content-color-secondary mb-0 small"><span
-                                        class="content-color-primary">$340 Recieved </span> from Trevor</p>
-                            </div>
-                        </div>
-                    </div>
+<style>
+  .digit {
+    font-size: 1.3rem;
+    height: 75px;
+    margin: 0 auto;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+  }
+</style>
+<div class="container-fluid bg-light-opac">
+    <div class="row">
+        <div class="container my-3 main-container">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h2 class="content-color-primary page-title">Your Finances</h2>
+                    <p class="content-color-secondary page-sub-title">View your Cash Card</p>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-rounded pink-gradient text-uppercase" data-toggle="modal" data-target="#createOrder"><i class="material-icons">add</i> <span class="text-hide-xs">Cash Card</span></button>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
+        </div>
+    </div>
+</div>
+<!-- content page -->
 
-                <div class="card mb-4 fullscreen">
-                    <div class="card-header">
-                        <div class="media">
-                            <div class="media-body">
-                                <h4 class="content-color-primary mb-0">Send or Recieve</h4>
-                            </div>
-                            <a href="javascript:void(0);"
-                                class="icon-circle icon-30 content-color-secondary fullscreenbtn">
-                                <i class="material-icons ">crop_free</i>
-                            </a>
-                        </div>
+
+<div class="container-fluid mt-4 main-container">
+   
+  <div class="row">
+
+    <div class="col-12 col-md-12">
+      <div class="card mb-4 fullscreen">
+        <div class="card-header">
+          <div class="media">
+            <div class="media-body">
+              <h4 class="content-color-primary mb-0">Account Balance</h4>
+              <p class="content-color-secondary mb-0">GHS</p>
+            </div>
+
+          </div>
+        </div>
+        <div class="card-body">
+          <h1 id="test" class="mt-4"><span class="font-weight-light">$</span> 2053.19</h1>
+          <p class="small mb-1 text-success "><i class="material-icons icon-sm">arrow_drop_up</i> $250
+          </p>
+        </div>
+        <div class="card-footer border-top">
+          <div class="media">
+            <div class="media-body">
+              <h5 class="content-color-primary mb-0">Latest Transaction</h5>
+              <p class="content-color-secondary mb-0 small"><span class="content-color-primary">$340 Recieved </span> from Trevor</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-12">
+
+      <div class="card mb-4 fullscreen">
+        <div class="card-header">
+          <div class="media">
+            <div class="media-body">
+              <h4 class="content-color-primary mb-0">Send or Recieve</h4>
+            </div>
+
+          </div>
+        </div>
+        <div class="card-body pt-0">
+
+
+
+
+          <div id="dial-payment" class="container">
+
+            <div class="row">
+              <div class="col-12 col-md-4">
+
+                <form method="post" action="#">
+                  <label for="currency-field">Enter Amount</label>
+                  <input type="text" name="currency-field" id="currency-field" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency"
+                    placeholder="$0.00">
+                </form>
+
+              </div>
+
+
+            </div>
+
+            <div class="row">
+              <div class="col-4 col-md-4 text-center digit " data-number="1">
+                1
+              </div>
+              <div class="col-4 col-md-4 text-center digit " data-number="2">
+                2
+              </div>
+              <div class="col-4 col-md-4 text-center digit " data-number="3">
+                3
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-4 col-md-4 text-center digit " data-number="4">
+                4
+              </div>
+              <div class="col-4 col-md-4 text-center digit " data-number="5">
+                5
+              </div>
+              <div class="col-4 col-md-4 text-center digit " data-number="6">
+                6
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-4 col-md-4 text-center digit " data-number="7">
+                7
+              </div>
+              <div class="col-4 col-md-4 text-center digit " data-number="8">
+                8
+              </div>
+              <div class="col-4 col-md-4 text-center digit " data-number="9">
+                9
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-4 col-md-4 text-center digit " data-number=".">
+                .
+              </div>
+              <div class="col-4 col-md-4 text-center digit " data-number="0">
+                0
+              </div>
+              <div class="col-4 col-md-4 text-center digit ">
+                x
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6 col-md-4 text-center digit ">
+                Request
+              </div>
+              <div data-toggle="modal" data-target="#exampleModalCenter" class="col-6 col-md-4 text-center digit ">
+                Pay
+
+              </div>
+
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog  modal-sm modal-dialog-centered " role="document">
+                <div class="modal-content box-shadow pink-gradient">
+                  <div class="modal-header border-0  px-0">
+                    <div class="col-6">
+                      <h5 class="card-title mb-0">Login</h5>
                     </div>
-                    <div  class="card-body pt-0">
-                         
-                      
-                     
-  <div id="app" class="dial-payment-section">
-    <md-layout md-gutter md-align="center">
-      <md-layout >
-        <md-layout >
-          <md-input-container md-inline class="no-margin">
-            <md-input class="dial-input" v-model="number"></md-input>
-          </md-input-container>
-        </md-layout>
-      </md-layout>
-    </md-layout>
-    <md-layout md-gutter md-align="center">
-      <md-layout >
-        <md-layout   md-align="center">
-          <md-button class="btn-key" v-on:click="addNumber(1)">1</md-button>
-        </md-layout>
-        <md-layout   md-align="center">
-          <md-button class="btn-key" v-on:click="addNumber(2)">2</md-button>
-        </md-layout>
-        <md-layout   md-align="center">
-          <md-button class="btn-key" v-on:click="addNumber(3)">3</md-button>
-        </md-layout>
-      </md-layout>
-    </md-layout>
-    <md-layout md-gutter md-align="center">
-      <md-layout >
-        <md-layout  md-align="center">
-          <md-button class="btn-key" v-on:click="addNumber(4)">4</md-button>
-        </md-layout>
-        <md-layout   md-align="center">
-          <md-button class="btn-key" v-on:click="addNumber(5)">5</md-button>
-        </md-layout>
-        <md-layout   md-align="center">
-          <md-button class="btn-key" v-on:click="addNumber(6)">6</md-button>
-        </md-layout>
-      </md-layout>
-    </md-layout>
-    <md-layout md-gutter md-align="center">
-      <md-layout >
-        <md-layout  md-align="center">
-          <md-button class="btn-key" v-on:click="addNumber(7)">7</md-button>
-        </md-layout>
-        <md-layout   md-align="center">
-          <md-button class="btn-key" v-on:click="addNumber(8)">8</md-button>
-        </md-layout>
-        <md-layout   md-align="center">
-          <md-button class="btn-key" v-on:click="addNumber(9)">9</md-button>
-        </md-layout>
-      </md-layout>
-    </md-layout>
-    <md-layout md-gutter md-align="center">
-      <md-layout >
-        <md-layout md-align="center" >
-                <md-button class="btn-key" v-on:click="addNumber('.')">.</md-button>
-                      
-        </md-layout>
-        <md-layout  md-align="center" >
-          <md-button class="btn-key" v-on:click="addNumber(0)">0</md-button>
-        </md-layout>
-        <md-layout  >
-                <md-button class="md-warn btn-key">
-                        <md-icon>clear</md-icon>
-                      </md-button>
-        </md-layout>
-      </md-layout>
-    </md-layout>
-    <md-layout md-gutter md-align="center">
-      <md-layout >
-        <md-layout md-align="center" >
-                <md-button class="btn-key">Request</md-button>
-         
-        </md-layout>
-        <md-layout  md-align="center" >
-                <md-button class="btn-key">Pay</md-button>
-        </md-layout>
-       
-      </md-layout>
-    </md-layout>
-    
+                    <div class="col text-right">
+                      <div class="dropdown">
+                        <button class="btn btn-link btn-sm text-secondary rounded-0 dropdown-toggle float-right icon" data-toggle="dropdown" aria-haspopup="true"
+                          aria-expanded="true" type="button">
+                          <i class="fa fa-ellipsis-v"></i>
+                      </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                          <a class="dropdown-item" href="#">
+                              <i class="fa fa-exclamation-circle text-secondary"></i> Report</a>
+                          <a class="dropdown-item" href="#">
+                              <i class="fa fa-cog text-secondary"></i> Settings</a>
+                          <a class="dropdown-item" href="#">
+                              <i class="fa fa-trash text-secondary"></i> Remove</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-body text-center pr-4 pl-4">
+                    <figure class="avatar avatar-120 mx-auto">
+                      <img src="img/user1.png" alt="user image">
+                    </figure>
+                    <h5 class="my-3 f-light">John McMohan</h5>
+                    <div class="input-group mb-2">
+                      <input id="currency-input" type="text" class="form-control border-light">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-light" type="button"> <i class="material-icons icon-sm">visibility</i></button>
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <button class="btn btn-circle btn-outline-light btn-block col">Login</button>
+                      <br>
+                      <br>
+                      <a href="" class="text-white">Not you? Sign in as different user</a>
+                    </div>
+                    <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
-
-
-                                        </div>
-                                    </div>
-                        
-                    </div>
-                </div>
-            </div>
-       <!-- content page ends -->
+  <!-- content page ends -->
 @endsection
-
-
+ 
 @section('page-scripts')
+  @include('frontend.includes.partials.scripts.dashboard.financeScript')
 
-@include('frontend.includes.partials.scripts.dashboard.financeScript')
+  <script>
+    // Jquery Dependency
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js'></script>
-<script src='https://unpkg.com/vue-material@0.7.4'></script>
+/* $("input[data-type='currency']").on({
+    keyup: function() {
+      formatCurrency($(this));
+    },
+    blur: function() { 
+      formatCurrency($(this), "blur");
+    }
+}); */
+  $("input[data-type='currency']").on({
+    change: function() {
+      formatCurrency($(this));
+    },
+    keyup: function() {
+      formatCurrency($(this));
+    },
+    blur: function() { 
+      formatCurrency($(this), "blur");
+    } 
+});
+var count = 0;
 
-<script>
+$(".digit").click(function() {
 
-Vue.use(VueMaterial)
-var app=new Vue({
-  el:"#app",
-  data:{
-    number:""
-  },
-  methods:{
-    addNumber:function(number){
-      this.number+=number;
+	  var num= $(this).attr('data-number');
+	  $("#currency-field").val(function() {
+      
+      return this.value + num;
+      
+      
+       
+      
+    });
+     formatCurrency($("#currency-field"));
+    
+	});
+
+
+function formatNumber(n) {
+  // format number 1000000 to 1,234,567
+  return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}
+
+
+function formatCurrency(input, blur) {
+  // appends $ to value, validates decimal side
+  // and puts cursor back in right position.
+  
+  // get input value
+  var input_val = input.val();
+  
+  // don't validate empty input
+  if (input_val === "") { return; }
+  
+  // original length
+  var original_len = input_val.length;
+
+  // initial caret position 
+  var caret_pos = input.prop("selectionStart");
+    
+  // check for decimal
+  if (input_val.indexOf(".") >= 0) {
+
+    // get position of first decimal
+    // this prevents multiple decimals from
+    // being entered
+    var decimal_pos = input_val.indexOf(".");
+
+    // split number by decimal point
+    var left_side = input_val.substring(0, decimal_pos);
+    var right_side = input_val.substring(decimal_pos);
+
+    // add commas to left side of number
+    left_side = formatNumber(left_side);
+
+    // validate right side
+    right_side = formatNumber(right_side);
+    
+    // On blur make sure 2 numbers after decimal
+    if (blur === "blur") {
+      right_side += "00";
+    }
+    
+    // Limit decimal to only 2 digits
+    right_side = right_side.substring(0, 2);
+
+    // join number by .
+    input_val = "$" + left_side + "." + right_side;
+
+  } else {
+    // no decimal entered
+    // add commas to number
+    // remove all non-digits
+    input_val = formatNumber(input_val);
+    input_val = "$" + input_val;
+    
+    // final formatting
+    if (blur === "blur") {
+      input_val += ".00";
     }
   }
-});
+  
+  // send updated string to input
+  input.val(input_val);
 
-</script>
+  // put caret back in the right position
+  var updated_len = input_val.length;
+  caret_pos = updated_len - original_len + caret_pos;
+  input[0].setSelectionRange(caret_pos, caret_pos);
 
+  console.log(input_val);
+
+  var modal = document.querySelector('#test');
+  document.getElementById("currency-input").value = input_val;
+  modal.innerHTML = input_val;
+
+}
+  </script>
 @endsection

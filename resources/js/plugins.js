@@ -126,12 +126,11 @@ $('.sidebar-left + div.backdrop').on('click', function () {
    
 
 
+
     /* sidebar hide below 1100px resolution  */
     if ($(window).width() <= 1100) {
         $('body').addClass('sidebar-left-close');
     }
-
-
 
 
     $(window).on('load', function () {

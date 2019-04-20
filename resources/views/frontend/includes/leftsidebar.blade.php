@@ -21,15 +21,20 @@
 
     <ul class="nav flex-column">
         <li class="nav-item">
-            <a href="javascript:void(0);" class="nav-link"><i
-                    class="material-icons icon">insert_chart_outlined</i> <span>Dashboard</span></a>
+            <a href="/" class="nav-link"><i
+                    class="material-icons icon">insert_chart_outlined</i> <span>Home</span></a>
 
         </li>
         <li class="nav-item">
-            <a href="javascript:void(0);" class="nav-link"><i class="material-icons icon">filter_none</i>
-                <span>App Pages</span></a>
+            <a href="{{route('frontend.user.dashboard')}}" class="nav-link"><i class="material-icons icon">assignment</i>
+                <span>Dashboard</span></a>
 
         </li>
+        <li class="nav-item">
+                <a href="{{route('frontend.user.transactions')}}" class="nav-link"><i class="material-icons icon">assignment</i>
+                    <span>Transactions</span></a>
+    
+            </li>
         <li class="nav-item">
             <a href="javascript:void(0);" class="nav-link"><i class="material-icons icon">shopping_cart</i>
                 <span>eCommerce</span></a>

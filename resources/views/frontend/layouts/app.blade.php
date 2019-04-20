@@ -6,6 +6,7 @@
 @endlangrtl
 @include('frontend.includes.head')
     <body class="fixed-header  sidebar-left-close">
+            @include('frontend.includes.preloader')
         <div class="wrapper">
            
             @include('frontend.includes.header')

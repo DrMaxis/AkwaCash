@@ -12931,3 +12931,23 @@ Cutomize css starts
     font-size: 35px !important;
     color: #f39c12 !important;
 }
+
+.md-ripple {
+  position: absolute;
+   background-color: #00000000 !important; 
+  border-radius: 50%;
+   opacity: 1 !important; 
+   transform: none !important; 
+  transition: none;
+  will-change: background-color, opacity, transform, width, height, top, left;
+}
+
+.hide{
+  display: none;
+}
+/* 
+.iti-flag {background-image: url("path/to/flags.png");}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti-flag {background-image: url("path/to/flags@2x.png");}
+} */
