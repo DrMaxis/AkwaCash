@@ -41,8 +41,8 @@
                             <div class="my-4 row">
                                 <div class="col">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck111" checked>
-                                        <label class="custom-control-label" for="customCheck111">Accept our <a href="">Terms and Conditions</a>.</label>
+                                        {{ html()->checkbox('accept-terms', true, 1)->class('custom-control-input') }}
+                                        {{ html()->label('Accept our Terms and Conditions.' )->for('accept-terms')->class('custom-control-label text-white') }}
                                     </div>
                                 </div>
                             </div>
