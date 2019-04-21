@@ -31,6 +31,7 @@ class BaseUser extends Authenticatable implements AuditableInterface
     protected $fillable = [
         'first_name',
         'last_name',
+        'account',
         'email',
         'username',
         'avatar_type',
@@ -48,6 +49,7 @@ class BaseUser extends Authenticatable implements AuditableInterface
         'last_login_at',
         'last_login_ip',
         'to_be_logged_out',
+        
     ];
 
     /**

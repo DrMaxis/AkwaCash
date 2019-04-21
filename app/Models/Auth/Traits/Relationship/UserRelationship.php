@@ -2,6 +2,7 @@
 
 namespace App\Models\Auth\Traits\Relationship;
 
+use App\Models\Auth\Account;
 use App\Models\Auth\SocialAccount;
 use App\Models\Auth\PasswordHistory;
 
@@ -24,5 +25,13 @@ trait UserRelationship
     public function passwordHistories()
     {
         return $this->hasMany(PasswordHistory::class);
+    }
+
+      /**
+     * @return mixed
+     */
+    public function account()
+    {
+        return $this->hasOne(Account::class);
     }
 }

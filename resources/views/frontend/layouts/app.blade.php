@@ -11,7 +11,7 @@
            
             @include('frontend.includes.header')
             @include('frontend.includes.leftsidebar')
-
+            @include('includes.partials.messages')
         
 
                 @yield('content')

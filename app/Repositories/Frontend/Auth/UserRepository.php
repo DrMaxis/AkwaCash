@@ -95,7 +95,7 @@ class UserRepository extends BaseRepository
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'email' => $data['email'],
-                'phone_number' => $data['mobilenumber'],
+                'phone_number' => $data['phone_number'],
                 'password' => $data['password'],
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'active' => true,

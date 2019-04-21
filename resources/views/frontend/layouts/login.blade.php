@@ -8,7 +8,7 @@
     <body class="fixed-header  sidebar-left-close">
             @include('frontend.includes.preloader')
         <div class="wrapper h-100  h-sm-auto justify-content-center pink-gradient">
-           
+            @include('includes.partials.messages')
      
        
 

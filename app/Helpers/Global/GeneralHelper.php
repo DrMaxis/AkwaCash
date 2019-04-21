@@ -35,7 +35,7 @@ if (! function_exists('home_route')) {
                 return 'admin.dashboard';
             }
 
-            return 'frontend.user.dashboard';
+            return 'frontend.user.index';
         }
 
         return 'frontend.index';

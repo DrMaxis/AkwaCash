@@ -24,8 +24,8 @@
                             <hr class="my-0"> {{ html()->label(__('validation.attributes.frontend.email'))->for('email') }} {{ html()->text('email')
                             ->class('form-control form-control-lg border-0') ->placeholder(__('validation.attributes.frontend.email'))
                             ->attribute('maxlength', 191) ->required() }}
-                            <hr class="my-0"> {{ html()->label(__('validation.attributes.frontend.phone_number'))->for('mobilenumber') }}
-                            {{ html()->text('mobilenumber') ->class('form-control form-control-lg border-0') ->placeholder(__('validation.attributes.frontend.phone_number'))
+                            <hr class="my-0"> {{ html()->label(__('validation.attributes.frontend.phone_number'))->for('phone_number') }}
+                            {{ html()->text('phone_number') ->class('form-control form-control-lg border-0') ->placeholder(__('validation.attributes.frontend.phone_number'))
                             ->attribute('maxlength', 191) ->required() }}
 
                             <span id="valid-msg" class="hide">✓ Valid</span>
