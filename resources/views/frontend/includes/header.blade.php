@@ -8,7 +8,7 @@
             <div class="row align-items-center">
                 <div class="col-auto px-0">
                     <button class="btn pink-gradient btn-icon" id="left-menu"><i
-                                class="material-icons">widgets</i></button>
+                                class="material-icons">star</i></button>
                     <a href="index.html" class="logo"><img src="img/logo-icon.png" alt=""><span
                                 class="text-hide-xs"><b>Akwa</b>Cash<br><span class="small">African Mobile Money</span></span>
                         </a>
@@ -126,7 +126,7 @@
                     <div class="dropdown d-inline-block">
                             <a class="btn header-color-secondary dropdown-toggle username" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <figure class="userpic"><img src="img/user1.png" alt=""></figure>
+                                <figure class="userpic"><img src="{{ $logged_in_user->picture }}" alt=""></figure>
                                 <h5 class="text-hide-xs">
                                     <small class="header-color-secondary">Welcome,</small>
                                     <span class="header-color-primary">{{ $logged_in_user->name }}</span>
@@ -137,13 +137,13 @@
                                     <div class="card-body text-center">
                                         <a href="profile.html">
                                             <figure class="avatar avatar-120 mx-auto my-3">
-                                                <img src="img/user1.png" alt="">
+                                                <img src="{{ $logged_in_user->picture }}" alt="">
                                             </figure>
                                             <h5 class="card-title mb-2 header-color-primary">{{ $logged_in_user->name }}</h5>
-                                            <h6 class="card-subtitle mb-3 header-color-secondary">South Africa</h6>
+                                            <h6 class="card-subtitle mb-3 header-color-secondary">{{ $logged_in_user->username }}</h6>
                                         </a>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <button class="btn btn-sm pink-gradient border-0 mb-3">Edit</button>
+                                        <p class="card-text">{{ $logged_in_user->status }}</p>
+                                        
                                     </div>
                                 </div>
                                

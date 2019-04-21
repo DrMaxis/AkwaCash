@@ -23,6 +23,9 @@ return [
         'buttons' => [
             'save' => 'Save',
             'update' => 'Update',
+            'update_account' => 'Update Account',
+            'update_password' => 'Update Password',
+            'update_phone_number' => 'Update Phone',
         ],
         'hide' => 'Hide',
         'inactive' => 'Inactive',

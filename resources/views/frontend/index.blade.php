@@ -138,16 +138,16 @@
               <div class="col-4 col-md-4 text-center digit " data-number="0">
                 0
               </div>
-              <div class="col-4 col-md-4 text-center digit ">
+              <div class="col-4 col-md-4 text-center digit " >
                 x
               </div>
             </div>
 
             <div class="row">
-              <div class="col-6 col-md-4 text-center digit ">
+              <div class="col-6 col-md-4 text-center digit " data-toggle="modal" data-target="#request">
                 Request
               </div>
-              <div data-toggle="modal" data-target="#exampleModalCenter" class="col-6 col-md-4 text-center digit ">
+              <div class="col-6 col-md-4 text-center digit " data-toggle="modal" data-target="#send" >
                 Pay
 
               </div>
@@ -155,12 +155,12 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal fade" id="send" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog  modal-sm modal-dialog-centered " role="document">
                 <div class="modal-content box-shadow pink-gradient">
                   <div class="modal-header border-0  px-0">
                     <div class="col-6">
-                      <h5 class="card-title mb-0">Login</h5>
+                      <h5 class="card-title mb-0">Send Money</h5>
                     </div>
                     <div class="col text-right">
                       <div class="dropdown">
@@ -170,11 +170,7 @@
                       </button>
                         <div class="dropdown-menu dropdown-menu-right">
                           <a class="dropdown-item" href="#">
-                              <i class="fa fa-exclamation-circle text-secondary"></i> Report</a>
-                          <a class="dropdown-item" href="#">
-                              <i class="fa fa-cog text-secondary"></i> Settings</a>
-                          <a class="dropdown-item" href="#">
-                              <i class="fa fa-trash text-secondary"></i> Remove</a>
+                              <i class="fa fa-exclamation-circle text-secondary"></i> Report a problem</a>
                         </div>
                       </div>
                     </div>
@@ -184,17 +180,46 @@
                       <img src="img/user1.png" alt="user image">
                     </figure>
                     <h5 class="my-3 f-light">John McMohan</h5>
+                    
+                   
+                        
+                        <div class="input-group mb-2">
+                            <input  type="text" class="form-control border-light" id="example-mail2" placeholder="Type Something...">
+                          </div>
+                   
+                    <div class="latest-transaction">
+                        <div class="card mb-4">
+                         
+                            <div class="card-body">
+                                
+                                <div class="media">
+                                    <figure class="avatar avatar-50 mr-3">
+                                        <img src="img/user1.png" alt="Generic placeholder image">
+                                    </figure>
+                                    <div class="media-body">
+                                        <h6 class="my-0 mt-1">John Doe <span class="status vm bg-success"></span></h6>
+                                        <p class="small">New Jersey, UK</p>
+                                    </div>
+                                    <h4 class="content-color-secondary">$255</h4>
+                                </div>
+                            </div>
+                            <div class="card-footer border-top">
+                                <div class="media">
+                                  <div class="media-body">
+                                    <h5 class="content-color-primary mb-0">Last Contact</h5>
+                                    <p class="content-color-secondary mb-0 small"><span class="content-color-primary">$255 Recieved </span> from John Doe</p>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
                     <div class="input-group mb-2">
                       <input id="currency-input" type="text" class="form-control border-light">
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-light" type="button"> <i class="material-icons icon-sm">visibility</i></button>
-                      </div>
                     </div>
                     <div class="text-center">
-                      <button class="btn btn-circle btn-outline-light btn-block col">Login</button>
                       <br>
                       <br>
-                      <a href="" class="text-white">Not you? Sign in as different user</a>
+                     <button class="btn btn-circle btn-outline-light btn-block col">Send</button>
                     </div>
                     <br>
                   </div>
@@ -202,6 +227,81 @@
               </div>
             </div>
 
+
+              <!-- Modal -->
+              <div class="modal fade" id="request" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog  modal-sm modal-dialog-centered " role="document">
+                    <div class="modal-content box-shadow pink-gradient">
+                      <div class="modal-header border-0  px-0">
+                        <div class="col-6">
+                          <h5 class="card-title mb-0">Request Payment</h5>
+                        </div>
+                        <div class="col text-right">
+                          <div class="dropdown">
+                            <button class="btn btn-link btn-sm text-secondary rounded-0 dropdown-toggle float-right icon" data-toggle="dropdown" aria-haspopup="true"
+                              aria-expanded="true" type="button">
+                              <i class="fa fa-ellipsis-v"></i>
+                          </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a class="dropdown-item" href="#">
+                                  <i class="fa fa-exclamation-circle text-secondary"></i> Report a problem</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-body text-center pr-4 pl-4">
+                        <figure class="avatar avatar-120 mx-auto">
+                          <img src="img/user1.png" alt="user image">
+                        </figure>
+                        <h5 class="my-3 f-light">John McMohan</h5>
+                        
+                       
+                            
+                            <div class="input-group mb-2">
+                                <input  type="text" class="form-control border-light" id="example-mail2" placeholder="Type Something...">
+                              </div>
+                       
+                        <div class="latest-transaction">
+                            <div class="card mb-4">
+                             
+                                <div class="card-body">
+                                    
+                                    <div class="media">
+                                        <figure class="avatar avatar-50 mr-3">
+                                            <img src="img/user1.png" alt="Generic placeholder image">
+                                        </figure>
+                                        <div class="media-body">
+                                            <h6 class="my-0 mt-1">John Doe <span class="status vm bg-success"></span></h6>
+                                            <p class="small">New Jersey, UK</p>
+                                        </div>
+                                        <h4 class="content-color-secondary">$255</h4>
+                                    </div>
+                                </div>
+                                <div class="card-footer border-top">
+                                    <div class="media">
+                                      <div class="media-body">
+                                        <h5 class="content-color-primary mb-0">Last Contact</h5>
+                                        <p class="content-color-secondary mb-0 small"><span class="content-color-primary">$255 Recieved </span> from John Doe</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-2">
+                          <input id="currency-input" type="text" class="form-control border-light">
+                        </div>
+                        <div class="text-center">
+                          <br>
+                          <br>
+                         <button class="btn btn-circle btn-outline-light btn-block col">Send</button>
+                        </div>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                
           </div>
         </div>
 

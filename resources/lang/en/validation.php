@@ -198,6 +198,8 @@ return [
             'send_confirmation_sms' => 'Send Confirmation SMS',
             'first_name' => 'First Name',
             'last_name' => 'Last Name',
+            'username' => 'Username',
+            'status' => 'Status',
             'name' => 'Full Name',
             'password' => 'Password',
             'password_confirmation' => 'Password Confirmation',

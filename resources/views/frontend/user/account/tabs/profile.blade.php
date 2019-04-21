@@ -1,24 +1,47 @@
-<div class="table-responsive">
-    <table class="table table-striped table-hover table-bordered">
-        <tr>
-            <th>@lang('labels.frontend.user.profile.avatar')</th>
-            <td><img src="{{ $logged_in_user->picture }}" class="user-profile-image" /></td>
-        </tr>
-        <tr>
-            <th>@lang('labels.frontend.user.profile.name')</th>
-            <td>{{ $logged_in_user->name }}</td>
-        </tr>
-        <tr>
-            <th>@lang('labels.frontend.user.profile.email')</th>
-            <td>{{ $logged_in_user->email }}</td>
-        </tr>
-        <tr>
-            <th>@lang('labels.frontend.user.profile.created_at')</th>
-            <td>{{ timezone()->convertToLocal($logged_in_user->created_at) }} ({{ $logged_in_user->created_at->diffForHumans() }})</td>
-        </tr>
-        <tr>
-            <th>@lang('labels.frontend.user.profile.last_updated')</th>
-            <td>{{ timezone()->convertToLocal($logged_in_user->updated_at) }} ({{ $logged_in_user->updated_at->diffForHumans() }})</td>
-        </tr>
-    </table>
-</div>
+
+{{ html()->modelForm($logged_in_user, 'POST', route('frontend.user.profile.update'))->class('form-horizontal')->attribute('enctype', 'multipart/form-data')->open() }}
+    @method('PATCH')
+
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                {{ html()->label(__('validation.attributes.frontend.username'))->for('username') }}
+
+                {{ html()->text('username')
+                     ->class('form-control form-control-lg border-0')
+                    ->placeholder(__('validation.attributes.frontend.username'))
+                    ->attribute('maxlength', 191)
+                    ->required()
+                    ->autofocus() }}
+            </div><!--form-group-->
+        </div><!--col-->
+    </div><!--row-->
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                {{ html()->label(__('validation.attributes.frontend.status'))->for('status') }}
+
+                {{ html()->text('status')
+                    ->class('form-control form-control-lg border-0')
+                    ->placeholder(__('validation.attributes.frontend.status'))
+                    ->attribute('maxlength', 191)
+                     }}
+            </div><!--form-group-->
+        </div><!--col-->
+    </div><!--row-->
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group mb-0 clearfix">
+                    {{ form_submit(__('labels.general.buttons.update').'<i class="material-icons">edit</i>')->class('btn btn-outline-light btn-sm rounded d-inline-block') }}
+               
+            </div><!--form-group-->
+        </div><!--col-->
+    </div><!--row-->
+{{ html()->closeModelForm() }}
+
+@push('after-scripts')
+  
+@endpush

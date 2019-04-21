@@ -25,11 +25,14 @@ return [
         'register' => 'Register',
 
         'user' => [
-            'account' => 'My Account',
+            'account' => 'Account',
             'administration' => 'Administration',
-            'change_password' => 'Change Password',
+            'security' => 'Security',
             'my_information' => 'My Information',
             'profile' => 'Profile',
+            'mobile_money' => 'Mobile Money ',
+            'bank_account' => 'Banking',
+            'credit_cards' => 'Credit',
         ],
     ],
 ];

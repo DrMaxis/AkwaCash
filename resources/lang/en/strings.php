@@ -125,7 +125,11 @@ return [
         'user' => [
             'change_email_notice' => 'If you change your e-mail you will be logged out until you confirm your new e-mail address.',
             'email_changed_notice' => 'You must confirm your new e-mail address before you can log in again.',
+            'change_phone_notice' => 'If you change your phone number you will be unable to send and recieve transactions using mobile money until you confirm your new phone number.',
+            'phone_number_changed_notice' => 'Your Phone Number has been changed. You will be unable to make transactions with mobile money until you confirm your new Number.',
             'profile_updated' => 'Profile successfully updated.',
+            'account_updated' => 'Account successfully updated.',
+            'phone_number_updated' => 'Phone Number successfully updated.',
             'password_updated' => 'Password successfully updated.',
         ],
 

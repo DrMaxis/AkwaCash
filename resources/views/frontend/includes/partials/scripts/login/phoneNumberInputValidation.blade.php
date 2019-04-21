@@ -1,6 +1,6 @@
 <script>
     
-var input = document.querySelector("#mobilenumber"),
+var input = document.querySelector("#phone_number"),
   errorMsg = document.querySelector("#error-msg"),
   validMsg = document.querySelector("#valid-msg");
 
