@@ -19,7 +19,7 @@
 
     <ul class="nav flex-column">
         <li class="nav-item">
-            <a href="/" class="nav-link"><i
+            <a href="{{ route('frontend.user.index') }}" class="nav-link"><i
                     class="material-icons icon">insert_chart_outlined</i> <span>Home</span></a>
 
         </li>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\User\AccountController;
 use App\Http\Controllers\Frontend\User\ProfileController;
+use App\Http\Controllers\Frontend\User\UserHomeController;
 use App\Http\Controllers\Frontend\User\DashboardController;
 use App\Http\Controllers\Frontend\User\TransactionController;
 
@@ -22,6 +23,9 @@ Route::post('contact/send', [ContactController::class, 'send'])->name('contact.s
  */
 Route::group(['middleware' => ['auth', 'password_expires']], function () {
     Route::group(['namespace' => 'User', 'as' => 'user.'], function () {
+
+        // User Index Specific
+        Route::get('home', [UserHomeController::class, 'index'])->name('index');
         // User Dashboard Specific
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
