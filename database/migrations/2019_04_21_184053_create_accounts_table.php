@@ -22,14 +22,16 @@ class CreateAccountsTable extends Migration
             $table->string('account_owner')->nullable();
             $table->string('account_email')->nullable();
             $table->string('account_phone')->nullable();
+            $table->string('account_phone_network')->nullable();
             $table->string('account_type')->nullable();
+            $table->string('default_funding')->nullable();
             $table->timestamp('last_updated')->nullable();
             $table->boolean('closed')->default(false);
             $table->timestamps();
         });
 
         Schema::table('accounts', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

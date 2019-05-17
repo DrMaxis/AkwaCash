@@ -14,6 +14,28 @@ class UserHomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.user.index');
+
+        $user = auth()->user();
+        $userAccount = $user->account()->first();
+        $userCard = $userAccount->cardReferences()->where('default_card', '=', 1)->get()->first();
+        $userBank = $userAccount->bank->bank_name;
+        $userPhone = 'MTN | '.''.$userAccount->account_phone;
+        $paymentOptions = [
+
+            $userBank,
+            $userCard,
+            $userPhone,
+        ];
+
+/* 
+        $transactions = $userAccount->transactions()->get();
+        dd($transactions); */
+      
+
+      
+
+
+
+        return view('frontend.user.index')->with(['paymentProviders' => $paymentOptions]);
     }
 }

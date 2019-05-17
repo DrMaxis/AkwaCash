@@ -11,6 +11,7 @@ import './vendor/circle-progress/circle-progress.min';
 import './vendor/cookie/jquery.cookie';
 import './vendor/bootstrap/footable';
 import './vendor/intlTelInput/utils';
+import './vendor/EasyAutocomplete-1.3.5/jquery.easy-autocomplete';
 import Vue from 'vue';
 import  intlTelInput from 'intl-tel-input';
 import Swiper from 'swiper';

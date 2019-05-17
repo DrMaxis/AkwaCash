@@ -1,4 +1,7 @@
 {
+    "/js/MobileMoneyTransaction.js": "/js/MobileMoneyTransaction.js",
+    "/js/RetrieveUserFromSearch.js": "/js/RetrieveUserFromSearch.js",
+    "/js/UsernameSearch.js": "/js/UsernameSearch.js",
     "/js/backend.js": "/js/backend.js",
     "/js/frontend.js": "/js/frontend.js",
     "/css/frontend.css": "/css/frontend.css",

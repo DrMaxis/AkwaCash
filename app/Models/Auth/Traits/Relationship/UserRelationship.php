@@ -34,4 +34,6 @@ trait UserRelationship
     {
         return $this->hasOne(Account::class);
     }
+
+
 }

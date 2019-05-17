@@ -2,17 +2,13 @@
 
 namespace App\Repositories\Frontend\Auth;
 
-use App\Models\Auth\User;
+
 use App\Models\Auth\Account;
 use Illuminate\Http\UploadedFile;
-use App\Models\Auth\SocialAccount;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use App\Events\Frontend\Auth\UserConfirmed;
-use App\Events\Frontend\Auth\UserProviderRegistered;
 use App\Notifications\Frontend\Auth\UserNeedsConfirmation;
 
 /**

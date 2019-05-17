@@ -16,6 +16,10 @@ mix.setPublicPath('public')
     .sass('resources/sass/frontend/app.scss', 'css/frontend.css')
     .sass('resources/sass/backend/app.scss', 'css/backend.css')
     .js('resources/js/frontend/app.js', 'js/frontend.js')
+    .js('resources/js/frontend/ajax/MobileMoneyTransaction.js', 'public/js')
+    .js('resources/js/frontend/ajax/UsernameSearch.js', 'public/js')
+    .js('resources/js/frontend/ajax/RetrieveUserFromSearch.js', 'public/js')
+   
     .js([
         'resources/js/backend/before.js',
         'resources/js/backend/app.js',

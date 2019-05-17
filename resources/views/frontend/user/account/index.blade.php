@@ -135,23 +135,20 @@
     
                     <div class="card-body">
                         <div class="tab-content">
-                            <div class="tab-pane fade show active" id="mobilemoney" role="tabpanel" aria-labelledby="mobilemoney">
-        @include('frontend.user.account.tabs.profile') </div>
-                            <div class="tab-pane fade" id="banks" role="tabpanel" aria-labelledby="banks">
-        @include('frontend.user.account.tabs.edit')
+                           
+                            <div class="tab-pane fade show active" id="banks" role="tabpanel" aria-labelledby="banks">
+        @include('frontend.user.account.tabs.banking')
                             </div>
                           
-                            <div class="tab-pane " id="creditcards" role="tabpanel" aria-labelledby="creditcards">
-        @include('frontend.user.account.tabs.change-password')
+                            <div class="tab-pane fade" id="creditcards" role="tabpanel" aria-labelledby="creditcards">
+        @include('frontend.user.account.tabs.cards')
                             </div>
                             
                         </div>
                     </div>
                     <div class="card-footer border-top tabs-footer">
                         <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a id="profile-tab" href="#mobilemoney" class="nav-link" aria-controls="mobilemoney" data-toggle="tab" role="tab" aria-selected="true">@lang('navs.frontend.user.mobile_money')</a>
-                            </li>
+                            
                             <li class="nav-item">
                                 <a id="account-tab" href="#banks" class="nav-link" aria-controls="banks" role="tab" data-toggle="tab">@lang('navs.frontend.user.bank_account')</a>
                             </li>

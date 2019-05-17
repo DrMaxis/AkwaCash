@@ -1,6 +1,21 @@
 @extends('frontend.layouts.app') {{-- @lang('strings.frontend.welcome_to', ['place' => app_name()]) --}} 
 @section('content')
 
+@section('meta')
+
+<script>
+
+
+const sendMoneyUrl = "{{route('frontend.user.sendcash')}}"; 
+var token = '{{Session::token()}}';
+const getUserUrl = "{{route('frontend.user.search.get')}}";
+const searchForUserUrl = "{{route('frontend.user.search')}}";
+</script>
+
+
+
+@endsection
+@section('xcss')
 <style>
   .digit {
     font-size: 1.3rem;
@@ -10,7 +25,21 @@
     vertical-align: middle;
     line-height: 90px;
   }
+
+  #currency-input {
+    text-align: center;
+  }
+
+
+
+
+.off{
+  display:!important none;
+}
+
 </style>
+
+@endsection
 <div class="container-fluid bg-light-opac">
     <div class="row">
         <div class="container my-3 main-container">
@@ -34,7 +63,7 @@
   <div class="row">
 
     <div class="col-12 col-md-12">
-      <div class="card mb-4 fullscreen">
+      <div class="card mb-4  purp-gradient fullscreen">
         <div class="card-header">
           <div class="media">
             <div class="media-body">
@@ -45,7 +74,7 @@
           </div>
         </div>
         <div class="card-body">
-          <h1 id="test" class="mt-4"><span class="font-weight-light">$</span> 2053.19</h1>
+          <h1 id="test" class="mt-4"><span class="font-weight-light">$</span> {{$logged_in_user->account()->first()->account_balance}}</h1>
           <p class="small mb-1 text-success "><i class="material-icons icon-sm">arrow_drop_up</i> $250
           </p>
         </div>
@@ -62,7 +91,7 @@
 
     <div class="col-12 col-md-12">
 
-      <div class="card mb-4 fullscreen">
+      <div class="card mb-4 purp-gradient fullscreen">
         <div class="card-header">
           <div class="media">
             <div class="media-body">
@@ -157,7 +186,7 @@
             <!-- Modal -->
             <div class="modal fade" id="send" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog  modal-sm modal-dialog-centered " role="document">
-                <div class="modal-content box-shadow pink-gradient">
+                <div class="modal-content box-shadow">
                   <div class="modal-header border-0  px-0">
                     <div class="col-6">
                       <h5 class="card-title mb-0">Send Money</h5>
@@ -175,54 +204,120 @@
                       </div>
                     </div>
                   </div>
-                  <div class="modal-body text-center pr-4 pl-4">
+                  <div class="modal-body text-center pr-4 pl-4 sendmoney">
                     <figure class="avatar avatar-120 mx-auto">
-                      <img src="img/user1.png" alt="user image">
-                    </figure>
-                    <h5 class="my-3 f-light">John McMohan</h5>
+                      <img src="" class="recipiant-avi" alt="user image">
+                        </figure>
+
+
+                        <h5 class="my-3 f-light recipiant"><span class="send-recipiant-name">John McMohan</span></h5>
                     
                    
                         
                         <div class="input-group mb-2">
-                            <input  type="text" class="form-control border-light" id="example-mail2" placeholder="Type Something...">
+                            <input  type="text" class="form-control border-light" id="livesearch-send" placeholder="To: Name, $username, Email..">
                           </div>
                    
-                    <div class="latest-transaction">
-                        <div class="card mb-4">
-                         
-                            <div class="card-body">
-                                
-                                <div class="media">
-                                    <figure class="avatar avatar-50 mr-3">
-                                        <img src="img/user1.png" alt="Generic placeholder image">
-                                    </figure>
-                                    <div class="media-body">
-                                        <h6 class="my-0 mt-1">John Doe <span class="status vm bg-success"></span></h6>
-                                        <p class="small">New Jersey, UK</p>
-                                    </div>
-                                    <h4 class="content-color-secondary">$255</h4>
+                          <div class="input-group mb-2">
+                            <input  type="text" class="form-control border-light" placeholder="For: Plantains, Casava, Mangos...">
+                          </div>
+                    
+                    <div class="input-group mb-3">
+                     
+
+
+                      <input type="text" class="form-control" id="currency-input" data-transactionType="{{$logged_in_user->account()->first()->default_funding}}" aria-label="Text input with dropdown button">
+
+
+                      <div class="input-group-append">
+                          <button class="btn btn-danger dropdown-toggle funding-button" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pay With
+                          </button>
+                          <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(420px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+
+@forelse($paymentProviders as $provider) 
+
+@if($provider != null)
+<a class="dropdown-item" href="#"><span class="funding-button-text"> {{$provider}} </span></a>
+@else 
+@endif
+ @empty 
+        
+        
+
+@endforelse
+{{-- <a class="dropdown-item" href="#"><span class="funding-button-text">Mobile Account</span></a>
+ <a class="dropdown-item" href="#"><span class="funding-button-text">Bank Account</span></a>
+ <a class="dropdown-item" href="#"><span class="funding-button-text">Credit or Debit</span></a> --}}
+                           
+                              <div role="separator" class="dropdown-divider"></div>
+                              
+                              
+                              
+                              <a class="dropdown-item" href="#"><span class="funding-button-text">Other</span></a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="latest-transaction">
+                    <div class="card mb-4">
+                     
+                        <div class="card-body">
+                            
+                            <div class="media">
+                                <figure class="avatar avatar-50 mr-3">
+                                    <img src="img/user1.png" alt="Generic placeholder image">
+                                </figure>
+                                <div class="media-body">
+                                  <h5 class="content-color-primary mb-0">Last Contact</h5>
+                                  <p class="content-color-secondary mb-0 small"><span class="content-color-primary">$255 Recieved </span> from John Doe</p>
                                 </div>
+                               
                             </div>
-                            <div class="card-footer border-top">
-                                <div class="media">
-                                  <div class="media-body">
-                                    <h5 class="content-color-primary mb-0">Last Contact</h5>
-                                    <p class="content-color-secondary mb-0 small"><span class="content-color-primary">$255 Recieved </span> from John Doe</p>
-                                  </div>
-                                </div>
-                              </div>
                         </div>
+                       
                     </div>
-                    <div class="input-group mb-2">
-                      <input id="currency-input" type="text" class="form-control border-light">
-                    </div>
+                </div>
                     <div class="text-center">
                       <br>
                       <br>
-                     <button class="btn btn-circle btn-outline-light btn-block col">Send</button>
+                     <button class="btn btn-circle btn-outline-light btn-block col send-money">Send</button>
                     </div>
                     <br>
                   </div>
+
+
+                  <div class="transaction-loader off">
+    
+                    <div class="row">
+                        
+                        <div class="col-12">
+                
+                <div class="payment-loader payment-loader4">
+                  <div>
+                    <div>
+                      <div>
+                        <div>
+                          <div>
+                            <div>
+                              <div>
+                                <div>
+                                  <div>
+                                    <div></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+
                 </div>
               </div>
             </div>
@@ -251,45 +346,54 @@
                       </div>
                       <div class="modal-body text-center pr-4 pl-4">
                         <figure class="avatar avatar-120 mx-auto">
-                          <img src="img/user1.png" alt="user image">
-                        </figure>
-                        <h5 class="my-3 f-light">John McMohan</h5>
+                          <img src="img/user1.png" class="recipiant-avi" alt="user image">
+                            </figure>
+                            <h5 class="my-3 f-light recipiant">John McMohan</h5>
                         
                        
                             
                             <div class="input-group mb-2">
-                                <input  type="text" class="form-control border-light" id="example-mail2" placeholder="Type Something...">
+                                <input  type="text" class="form-control border-light" id="livesearch-request" placeholder="To: Name, $username, Email..">
                               </div>
                        
-                        <div class="latest-transaction">
-                            <div class="card mb-4">
-                             
-                                <div class="card-body">
-                                    
-                                    <div class="media">
-                                        <figure class="avatar avatar-50 mr-3">
-                                            <img src="img/user1.png" alt="Generic placeholder image">
-                                        </figure>
-                                        <div class="media-body">
-                                            <h6 class="my-0 mt-1">John Doe <span class="status vm bg-success"></span></h6>
-                                            <p class="small">New Jersey, UK</p>
-                                        </div>
-                                        <h4 class="content-color-secondary">$255</h4>
+                              <div class="input-group mb-2">
+                                <input  type="text" class="form-control border-light" placeholder="For: Plantains, Casava, Mangos...">
+                              </div>
+                        
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" id="currency-input" aria-label="Text input with dropdown button">
+                          <div class="input-group-append">
+                              <button class="btn btn-danger dropdown-toggle funding-button" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Funding
+                              </button>
+                              <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(420px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                  <a class="dropdown-item" href="#"><span class="button-text">MTN</span></a>
+                                  <a class="dropdown-item" href="#"><span class="button-text">Bank Of Ghana</span></a>
+                                  <a class="dropdown-item" href="#"><span class="button-text">Visa</span></a>
+                                  <div role="separator" class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="#"><span class="button-text">Other</span></a>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="latest-transaction">
+                        <div class="card mb-4">
+                         
+                            <div class="card-body">
+                                
+                                <div class="media">
+                                    <figure class="avatar avatar-50 mr-3">
+                                        <img src="img/user1.png" alt="Generic placeholder image">
+                                    </figure>
+                                    <div class="media-body">
+                                      <h5 class="content-color-primary mb-0">Last Contact</h5>
+                                      <p class="content-color-secondary mb-0 small"><span class="content-color-primary">$255 Recieved </span> from John Doe</p>
                                     </div>
+                                   
                                 </div>
-                                <div class="card-footer border-top">
-                                    <div class="media">
-                                      <div class="media-body">
-                                        <h5 class="content-color-primary mb-0">Last Contact</h5>
-                                        <p class="content-color-secondary mb-0 small"><span class="content-color-primary">$255 Recieved </span> from John Doe</p>
-                                      </div>
-                                    </div>
-                                  </div>
                             </div>
+                           
                         </div>
-                        <div class="input-group mb-2">
-                          <input id="currency-input" type="text" class="form-control border-light">
-                        </div>
+                    </div>
                         <div class="text-center">
                           <br>
                           <br>
@@ -299,10 +403,16 @@
                       </div>
                     </div>
                   </div>
+
+
+              
                 </div>
 
                 
           </div>
+
+ 
+
         </div>
 
       </div>
@@ -314,128 +424,11 @@
 @endsection
  
 @section('page-scripts')
-  @include('frontend.includes.partials.scripts.dashboard.financeScript')
 
-  <script>
-    // Jquery Dependency
-
-/* $("input[data-type='currency']").on({
-    keyup: function() {
-      formatCurrency($(this));
-    },
-    blur: function() { 
-      formatCurrency($(this), "blur");
-    }
-}); */
-  $("input[data-type='currency']").on({
-    change: function() {
-      formatCurrency($(this));
-    },
-    keyup: function() {
-      formatCurrency($(this));
-    },
-    blur: function() { 
-      formatCurrency($(this), "blur");
-    } 
-});
-var count = 0;
-
-$(".digit").click(function() {
-
-	  var num= $(this).attr('data-number');
-	  $("#currency-field").val(function() {
-      
-      return this.value + num;
-      
-      
-       
-      
-    });
-     formatCurrency($("#currency-field"));
-    
-	});
-
-
-function formatNumber(n) {
-  // format number 1000000 to 1,234,567
-  return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-}
-
-
-function formatCurrency(input, blur) {
-  // appends $ to value, validates decimal side
-  // and puts cursor back in right position.
-  
-  // get input value
-  var input_val = input.val();
-  
-  // don't validate empty input
-  if (input_val === "") { return; }
-  
-  // original length
-  var original_len = input_val.length;
-
-  // initial caret position 
-  var caret_pos = input.prop("selectionStart");
-    
-  // check for decimal
-  if (input_val.indexOf(".") >= 0) {
-
-    // get position of first decimal
-    // this prevents multiple decimals from
-    // being entered
-    var decimal_pos = input_val.indexOf(".");
-
-    // split number by decimal point
-    var left_side = input_val.substring(0, decimal_pos);
-    var right_side = input_val.substring(decimal_pos);
-
-    // add commas to left side of number
-    left_side = formatNumber(left_side);
-
-    // validate right side
-    right_side = formatNumber(right_side);
-    
-    // On blur make sure 2 numbers after decimal
-    if (blur === "blur") {
-      right_side += "00";
-    }
-    
-    // Limit decimal to only 2 digits
-    right_side = right_side.substring(0, 2);
-
-    // join number by .
-    input_val = "$" + left_side + "." + right_side;
-
-  } else {
-    // no decimal entered
-    // add commas to number
-    // remove all non-digits
-    input_val = formatNumber(input_val);
-    input_val = "$" + input_val;
-    
-    // final formatting
-    if (blur === "blur") {
-      input_val += ".00";
-    }
-  }
-  
-  // send updated string to input
-  input.val(input_val);
-
-  // put caret back in the right position
-  var updated_len = input_val.length;
-  caret_pos = updated_len - original_len + caret_pos;
-  input[0].setSelectionRange(caret_pos, caret_pos);
-
-  console.log(input_val);
-
-  var modal = document.querySelector('#test');
-  document.getElementById("currency-input").value = input_val;
-  modal.innerHTML = input_val;
-
-}
-  </script>
+<script src="{{asset('js/MobileMoneyTransaction.js')}}"></script>
+<script src="{{asset('js/MobileMoneyTransaction.js')}}"></script>
+<script src="{{asset('js/UsernameSearch.js')}}"></script>
+<script src="{{asset('js/RetrieveUserFromSearch.js')}}"></script>
 @endsection
 
 

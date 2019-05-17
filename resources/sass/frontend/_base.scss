@@ -100,9 +100,9 @@ Cutomize css starts
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #F39C12 !important;
+    color: #ffffff !important;
     text-align: left;
-    background-color: #fff;
+    background-color: #4a0a9a;
   }
   
   [tabindex="-1"]:focus {
@@ -12956,4 +12956,114 @@ Cutomize css starts
     width: 100%;
     margin-bottom: 1rem;
     color: #ffffff !important;
+}
+
+.off {
+  display: none;
+}
+
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes rotate2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    border-top-color: rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+    border-top-color: rgba(0, 0, 255, 0.5);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    border-top-color: rgba(0, 0, 0, 0.5);
+  }
+}
+@keyframes rotate2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    border-top-color: rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+    border-top-color: rgba(0, 0, 255, 0.5);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    border-top-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+
+
+.payment-loader {
+  position: relative;
+  margin: 75px auto;
+  width: 150px;
+  height: 150px;
+  display: block;
+  overflow: hidden;
+}
+.payment-loader div {
+  height: 100%;
+}
+
+
+/* loader 4 */
+.payment-loader4, .payment-loader4 div {
+  border-radius: 50%;
+  padding: 8px;
+  border: 2px solid transparent;
+  -webkit-animation: rotate linear 3.5s infinite;
+          animation: rotate linear 3.5s infinite;
+  border-radius: 50%;
+  padding: 4px;
+  -webkit-animation: rotate2 4s infinite linear;
+          animation: rotate2 4s infinite linear;
+}
+
+.payment-loader, .payment-loader * {
+  will-change: transform;
+}
+
+.purp-gradient {
+
+  background-color: #620bd0;
+  border: 0;
+  background-image: -webkit-linear-gradient(45deg, #8226f5 0%, #620bd0 100%) !important;
+  background-image: -ms-linear-gradient(45deg, #8226f5 0%, #620bd0 100%) !important;
+  border-color: transparent;
+  background-color: #8226f5 !important;
 }

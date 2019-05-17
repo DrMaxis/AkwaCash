@@ -21,4 +21,5 @@
     {{-- Vue Material StyleSheet --}}
 <link rel='stylesheet' href='https://unpkg.com/vue-material@0.7.4/dist/vue-material.css'>
 
+@yield('xcss')
 </head>
