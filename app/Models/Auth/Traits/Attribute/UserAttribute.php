@@ -298,4 +298,10 @@ trait UserAttribute
 		  </div>
 		</div>';
     }
+
+public function getAccountAttribute() {
+    $account = $this->account()->first();
+    return $account;
+}
+
 }

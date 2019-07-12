@@ -28,8 +28,10 @@ class CreateBankAccountsTable extends Migration
             $table->integer('account_bvn')->nullable();
             $table->string('account_currency')->nullable();
             $table->string('account_country')->nullable();
+            $table->boolean('default')->default(false);
             $table->string('error')->nullable();
             $table->timestamp('last_updated')->nullable();
+
             $table->timestamps();
         });
        

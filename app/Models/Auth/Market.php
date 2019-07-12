@@ -4,16 +4,18 @@ namespace App\Models\Auth;
 
 use App\Models\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Auth\Traits\Method\AccountMethod;
-use App\Models\Auth\Traits\Relationship\AccountRelationship;
-use App\Models\Auth\Traits\Attribute\AccountAttribute;
+use App\Models\Auth\Traits\Method\MarketMethod;
+use App\Models\Auth\Traits\Relationship\MarketRelationship;
+
+
+
 
 /**
  * Class Account.
  */
-class Account extends Model
+class Market extends Model
 {
-    use AccountRelationship, Uuid, AccountMethod, AccountAttribute;
+    use MarketRelationship, Uuid, MarketMethod, MarketAttribute;
 
 
     /**
@@ -23,7 +25,7 @@ class Account extends Model
      */
 
 
-    protected $table = 'accounts';
+    protected $table = 'markets';
 
 
     /**
@@ -38,22 +40,20 @@ class Account extends Model
 
         'user_id',
         'default_currency',
-        'account_balance',
-        'account_owner',
-        'account_email',
-        'account_type',
-        'account_phone',
-        'account_phone_network',
+        'Market_balance',
+        'Market_owner',
+        'Market_email',
+        'Market_type',
+        'Market_phone',
+        'Market_phone_network',
         'default_funding',
         'last_updated',
-        'closed',
-        'default_payment_method_id',
-        'default_payment_method_type',
+        'closed'
 
     ];
 
 
-
+    
     /**
      * Auto update created_at and updated_at
      *

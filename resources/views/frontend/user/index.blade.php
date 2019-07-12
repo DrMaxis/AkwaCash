@@ -1,6 +1,4 @@
-@extends('frontend.layouts.app') {{-- @lang('strings.frontend.welcome_to', ['place' => app_name()]) --}} 
-@section('content')
-
+@extends('frontend.layouts.app') {{-- @lang('strings.frontend.welcome_to', ['place' => app_name()]) --}}
 @section('meta')
 
 <script>
@@ -40,6 +38,10 @@ const searchForUserUrl = "{{route('frontend.user.search')}}";
 </style>
 
 @endsection
+
+@section('content')
+
+
 <div class="container-fluid bg-light-opac">
     <div class="row">
         <div class="container my-3 main-container">
@@ -57,7 +59,7 @@ const searchForUserUrl = "{{route('frontend.user.search')}}";
 </div>
 <!-- content page -->
 
-
+{{convertCurrency(12000, 'USD', 'GHS')}}
 <div class="container-fluid mt-4 main-container">
    
   <div class="row">
@@ -186,11 +188,37 @@ const searchForUserUrl = "{{route('frontend.user.search')}}";
             <!-- Modal -->
             <div class="modal fade" id="send" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog  modal-sm modal-dialog-centered " role="document">
-                <div class="modal-content box-shadow">
+                <div class="modal-content box-shadow pink-gradient">
                   <div class="modal-header border-0  px-0">
-                    <div class="col-6">
-                      <h5 class="card-title mb-0">Send Money</h5>
-                    </div>
+                      <div class="" style="padding: 3px;">
+                          <h5 class="card-title mb-0" style="font-size: 0.8rem;"><span id="payment-amount">0.00</span> <span> {{$logged_in_user->account->default_currency}}</span> | 
+                            
+                            <span>
+                              <a  id="payment-method" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-style: underline" >
+
+                                {{$logged_in_user->account->default_payment_method}}
+                                
+                                
+                              
+                              
+                              </a>
+                              <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                @foreach($logged_in_user->account->payment_methods as $method) 
+
+<a class="dropdown-item payment-option" data-reference="{{$method['id']}}">{{$method['name']}}</a>
+                                   <div class="dropdown-divider"></div>
+                                @endforeach
+                                   
+                                @if($logged_in_user->account->account_phone != null) 
+
+                                <a class="dropdown-item payment-option">{{$logged_in_user->phone_network}} | {{substr($logged_in_user->phone_number, -4)}}</a>
+                                @endif
+                                
+                               </div>
+                            </span>
+                            
+                            
+                           </div> 
                     <div class="col text-right">
                       <div class="dropdown">
                         <button class="btn btn-link btn-sm text-secondary rounded-0 dropdown-toggle float-right icon" data-toggle="dropdown" aria-haspopup="true"
@@ -205,15 +233,6 @@ const searchForUserUrl = "{{route('frontend.user.search')}}";
                     </div>
                   </div>
                   <div class="modal-body text-center pr-4 pl-4 sendmoney">
-                    <figure class="avatar avatar-120 mx-auto">
-                      <img src="" class="recipiant-avi" alt="user image">
-                        </figure>
-
-
-                        <h5 class="my-3 f-light recipiant"><span class="send-recipiant-name">John McMohan</span></h5>
-                    
-                   
-                        
                         <div class="input-group mb-2">
                             <input  type="text" class="form-control border-light" id="livesearch-send" placeholder="To: Name, $username, Email..">
                           </div>
@@ -222,7 +241,7 @@ const searchForUserUrl = "{{route('frontend.user.search')}}";
                             <input  type="text" class="form-control border-light" placeholder="For: Plantains, Casava, Mangos...">
                           </div>
                     
-                    <div class="input-group mb-3">
+                   {{-- <div class="input-group mb-3">
                      
 
 
@@ -245,9 +264,9 @@ const searchForUserUrl = "{{route('frontend.user.search')}}";
         
 
 @endforelse
-{{-- <a class="dropdown-item" href="#"><span class="funding-button-text">Mobile Account</span></a>
+ <a class="dropdown-item" href="#"><span class="funding-button-text">Mobile Account</span></a>
  <a class="dropdown-item" href="#"><span class="funding-button-text">Bank Account</span></a>
- <a class="dropdown-item" href="#"><span class="funding-button-text">Credit or Debit</span></a> --}}
+ <a class="dropdown-item" href="#"><span class="funding-button-text">Credit or Debit</span></a> 
                            
                               <div role="separator" class="dropdown-divider"></div>
                               
@@ -256,8 +275,16 @@ const searchForUserUrl = "{{route('frontend.user.search')}}";
                               <a class="dropdown-item" href="#"><span class="funding-button-text">Other</span></a>
                           </div>
                       </div>
+                      --}}
                   </div>
-                  <div class="latest-transaction">
+                  <div class="alert alert-info" style="font-size: 0.8rem;">
+                    <i class="fas fa-info-circle"></i>
+
+                      
+                     <span id="sending-amount"> 0.00</span> <span id="sending-currency"></span> <span> will be sent to </span> <span id="send-recipient-name">John McMohan </span>
+
+                    </div>
+                {{--   <div class="latest-transaction">
                     <div class="card mb-4">
                      
                         <div class="card-body">
@@ -275,7 +302,7 @@ const searchForUserUrl = "{{route('frontend.user.search')}}";
                         </div>
                        
                     </div>
-                </div>
+                </div> --}}
                     <div class="text-center">
                       <br>
                       <br>
@@ -429,6 +456,21 @@ const searchForUserUrl = "{{route('frontend.user.search')}}";
 <script src="{{asset('js/MobileMoneyTransaction.js')}}"></script>
 <script src="{{asset('js/UsernameSearch.js')}}"></script>
 <script src="{{asset('js/RetrieveUserFromSearch.js')}}"></script>
+
+
+<script>
+
+$(function() {
+
+  $('.payment-option').on('click', function() {
+    var contents = $(this).text();
+    $('a#payment-method').text(contents);
+    
+  });
+})
+
+
+</script>
 @endsection
 
 

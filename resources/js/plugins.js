@@ -269,7 +269,8 @@ function formatCurrency(input, blur) {
   modal.innerHTML = input_val; 
  
   */
- var element = document.getElementById("currency-input").value = input_val.replace(/[$]/,"");
+document.getElementById("payment-amount").innerHTML = input_val.replace(/[$]/,"");
+document.getElementById("sending-amount").innerHTML = input_val.replace(/[$]/,"");
 
 
 }

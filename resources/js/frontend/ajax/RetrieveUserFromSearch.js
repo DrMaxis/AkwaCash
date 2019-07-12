@@ -12,8 +12,10 @@ input.change(function() {
            
     } 
     }).done(function(w) { 
-     $('.send-recipiant-name').text(w.full_name);
-          $('.recipiant-avi').attr("src", w.avatar_location);
+     $('#send-recipient-name').text(w.full_name);
+          $('.recipient-avi').attr("src", w.avatar_location);
+          $('#sending-currency').text(w.default_currency);
+
     }); 
-    $('.recipiant-avi').attr("src", "https://www.gravatar.com/avatar/64e1b8d34f425d19e1ee2ea7236d3028.jpg?s=80&d=mm&r=g");
+    $('.recipient-avi').attr("src", "https://www.gravatar.com/avatar/64e1b8d34f425d19e1ee2ea7236d3028.jpg?s=80&d=mm&r=g");
   })

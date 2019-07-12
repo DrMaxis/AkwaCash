@@ -24,7 +24,8 @@ class CreateAccountsTable extends Migration
             $table->string('account_phone')->nullable();
             $table->string('account_phone_network')->nullable();
             $table->string('account_type')->nullable();
-            $table->string('default_funding')->nullable();
+            $table->string('default_payment_method_id')->nullable();
+            $table->string('default_payment_method_type')->nullable();
             $table->timestamp('last_updated')->nullable();
             $table->boolean('closed')->default(false);
             $table->timestamps();

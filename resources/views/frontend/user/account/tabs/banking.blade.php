@@ -2,9 +2,57 @@
 
 
 
+<div class="row">
+        <div class="col-12 col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body"  data-toggle="modal" data-target="#cashModal">
+                            <p class="content-color-primary mb-0">Cash Balance</p>
+                            <h4 class="mb-0 mt-1">${{$logged_in_user->account()->first()->account_balance}}</h4>
+                        </div>
+                        <div class="w-auto position-relative">
+                            <div class="text-success"><i class="material-icons icon-sm">arrow_drop_up</i> Default</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body" data-toggle="modal" data-target="#mobileMoneyModal">
+                            <p class="content-color-primary mb-0">Mobile Money</p>
+                            <h4 class="mb-0 mt-1">{{$logged_in_user->phone_network}} | {{$logged_in_user->phone_number}}</h4>
+                        </div>
+                        <div class="w-auto position-relative">
+                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body" data-toggle="modal" data-target="#debitModal">
+                            <p class="content-color-primary mb-0">Debit </p>
+                            <h4 class="mb-0 mt-1">Visa | 7980 <span class="dynamicsparkline mt-1 float-right"><canvas width="54" height="15" style="display: inline-block; width: 54px; height: 15px; vertical-align: top;"></canvas></span></h4>
+                        </div>
+                        <div class="w-auto position-relative">
+                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
 
+    </div>
 
-<div class="modal-body text-center pr-4 pl-4">
+{{-- <div class="modal-body text-center pr-4 pl-4">
         <figure class="avatar avatar-120 mx-auto">
           <img src="" class="bank-logo" alt="user image">
             </figure>
@@ -25,7 +73,7 @@
 
                    
 
-{{-- <input  type="text" class="form-control border-light" id="livesearch-banks" placeholder="Search for a bank.."> --}}
+<!-- <input  type="text" class="form-control border-light" id="livesearch-banks" placeholder="Search for a bank.."> -->
           <div class="input-group-append">
               <button class="btn btn-danger dropdown-toggle bank-country-button" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Country
               </button>
@@ -54,7 +102,7 @@
          <button id="send-money" class="btn btn-circle btn-outline-light btn-block col"><span class="save-bank-button-text">Save</span></button>
         </div>
         <br>
-      </div>
+      </div> --}}
 
 
 
@@ -103,6 +151,18 @@
 </div><!--row-->
 {{ html()->closeModelForm() }}
  --}}
+ @section('xcomponents') 
+
+ @include('frontend.user.account.modals.cashModal')
+ @include('frontend.user.account.modals.mobileMoneyModal')
+ @include('frontend.user.account.modals.debitModal')
+ 
+ @include('frontend.user.account.modals.addDebitModal')
+ 
+  @endsection
+ 
+ 
+
 @section('page-scripts')
 @include('frontend.includes.partials.scripts.search.selectbank')
 @endsection

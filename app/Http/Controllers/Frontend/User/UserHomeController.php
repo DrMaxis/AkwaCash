@@ -15,7 +15,7 @@ class UserHomeController extends Controller
     public function index()
     {
 
-        $user = auth()->user();
+       /*  $user = auth()->user();
         $userAccount = $user->account()->first();
         $userCard = $userAccount->cardReferences()->where('default_card', '=', 1)->get()->first();
         $userBank = $userAccount->bank->bank_name;
@@ -25,7 +25,7 @@ class UserHomeController extends Controller
             $userBank,
             $userCard,
             $userPhone,
-        ];
+        ]; */
 
 /* 
         $transactions = $userAccount->transactions()->get();
@@ -36,6 +36,6 @@ class UserHomeController extends Controller
 
 
 
-        return view('frontend.user.index')->with(['paymentProviders' => $paymentOptions]);
+        return view('frontend.user.index')/* ->with(['paymentProviders' => $paymentOptions]) */;
     }
 }

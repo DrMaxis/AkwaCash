@@ -47,9 +47,9 @@ trait AccountRelationship
      /**
      * @return mixed
      */
-    public function bank()
+    public function banks()
     {
-        return $this->hasOne(BankAccount::class, 'account_id', 'uuid');
+        return $this->hasMany(BankAccount::class, 'account_id', 'uuid');
     }
 
       /**
@@ -60,9 +60,16 @@ trait AccountRelationship
         return $this->hasMany(CardReference::class, 'account_id', 'uuid');
     }
 
-    // has many bills or utilities
+    
 
-    //has a store
+      /**
+     * @return mixed
+     */
+    public function market()
+    {
+        return $this->hasOne(Market::class, 'account_id', 'uuid');
+    }
+
 
 
 }

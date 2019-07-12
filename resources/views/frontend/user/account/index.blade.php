@@ -1,4 +1,47 @@
 @extends('frontend.layouts.app') 
+@section('xcss')
+    <style>
+    
+    
+
+    .switch-wrap {
+  cursor: pointer;
+  background: #15273b;
+  padding: 7px;
+  width: 120px;
+  height: 67px;
+  border-radius: 33.5px;
+}
+.switch-wrap input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 0fr 1fr 1fr;
+  transition: .2s;
+}
+.switch::after {
+  content: '';
+  border-radius: 50%;
+  background: #ccc;
+  grid-column: 2;
+  transition: background .2s;
+}
+
+input:checked + .switch {
+  grid-template-columns: 1fr 1fr 0fr;
+}
+input:checked + .switch::after {
+  background-color: #52cf71;
+}
+    
+    </style>
+@endsection
 @section('content')
 
 <!-- content page title -->
@@ -134,17 +177,8 @@
     
     
                     <div class="card-body">
-                        <div class="tab-content">
-                           
-                            <div class="tab-pane fade show active" id="banks" role="tabpanel" aria-labelledby="banks">
-        @include('frontend.user.account.tabs.banking')
-                            </div>
-                          
-                            <div class="tab-pane fade" id="creditcards" role="tabpanel" aria-labelledby="creditcards">
-        @include('frontend.user.account.tabs.cards')
-                            </div>
-                            
-                        </div>
+                        @include('frontend.user.account.tabs.banking')
+                     
                     </div>
                     <div class="card-footer border-top tabs-footer">
                         <ul class="nav nav-tabs" role="tablist">
@@ -162,7 +196,8 @@
                 </div>
             </div>
         </div>
-
+@yield('xcomponents')
 </div>
 <!-- content page ends -->
 @endsection
+

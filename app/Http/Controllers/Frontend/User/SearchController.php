@@ -19,15 +19,18 @@ class SearchController extends Controller
     public function liveSearch(Request $request)
     {
 
-
+        $currentUser = auth()->user();
         $data = User::select("*")
             ->where([["username", "LIKE", "%{$request->input('query')}%"]])
+            ->orwhere([["username", "NOT LIKE", "%{$currentUser->username}%"]])
             ->orWhere("phone_number", "LIKE", "%{$request->input('query')}%")
+            
             ->get();
-
 
         foreach ($data as $user) {
 
+
+           
             $user->setHidden([
                 'password_changed_at',
                 'confirmation_code',
@@ -71,9 +74,14 @@ class SearchController extends Controller
         if(!$user) {
             return 'User not found';
         }
+
+       
+            
+        
         $data = [
             'full_name' => $user->full_name,
-            'avatar_location' => $user->avatar_location ?? 'https://www.gravatar.com/avatar/64e1b8d34f425d19e1ee2ea7236d3028.jpg?s=80&d=mm&r=g'
+            'avatar_location' => $user->avatar_location ?? 'https://www.gravatar.com/avatar/64e1b8d34f425d19e1ee2ea7236d3028.jpg?s=80&d=mm&r=g',
+            'default_currency' => $user->account->default_currency
 
         ];
 
