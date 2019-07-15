@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request;
 use App\Repositories\Frontend\Auth\TransactionRepository;
 use App\Http\Requests\Frontend\Transaction\SendMoneyRequest;
+use App\Http\Requests\Frontend\Transaction\ConvertCurrencyRequest;
 use App\Events\Frontend\Auth\MobileMoney\DirectGhanaMobileMoneyTransactionCreated;
 
 /**
@@ -47,7 +48,16 @@ class TransactionController extends Controller
         return view('frontend.user.transactions.index');
     }
 
+    public function currencyConversion(ConvertCurrencyRequest $request) {
+        
+$data = $request->only('paymentAmount','baseCurrency', 'factorCurrency');
 
+
+$conversion = convertCurrency($data['paymentAmount'], $data['baseCurrency'], $data['factorCurrency']);
+
+return response()->json($conversion);
+
+}
 
     public function sendMoney(SendMoneyRequest $request)
     {

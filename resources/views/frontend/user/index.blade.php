@@ -8,6 +8,7 @@ const sendMoneyUrl = "{{route('frontend.user.sendcash')}}";
 var token = '{{Session::token()}}';
 const getUserUrl = "{{route('frontend.user.search.get')}}";
 const searchForUserUrl = "{{route('frontend.user.search')}}";
+const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
 </script>
 
 
@@ -59,7 +60,7 @@ const searchForUserUrl = "{{route('frontend.user.search')}}";
 </div>
 <!-- content page -->
 
-{{convertCurrency(12000, 'USD', 'GHS')}}
+
 <div class="container-fluid mt-4 main-container">
    
   <div class="row">
@@ -234,7 +235,7 @@ const searchForUserUrl = "{{route('frontend.user.search')}}";
                   </div>
                   <div class="modal-body text-center pr-4 pl-4 sendmoney">
                         <div class="input-group mb-2">
-                            <input  type="text" class="form-control border-light" id="livesearch-send" placeholder="To: Name, $username, Email..">
+                            <input  type="text" class="form-control border-light" id="livesearch-send" data-baseCurrency={{$logged_in_user->account->default_currency}} placeholder="To: Name, $username, Email..">
                           </div>
                    
                           <div class="input-group mb-2">
@@ -467,7 +468,14 @@ $(function() {
     $('a#payment-method').text(contents);
     
   });
+
+  $('#payment-amount').on('change', function() {
+        var $paymentAmount = parseFloat($('#payment-amount').text());
+        console.log($paymentAmount);
+    });
+
 })
+
 
 
 </script>

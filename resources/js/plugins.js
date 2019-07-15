@@ -270,6 +270,7 @@ function formatCurrency(input, blur) {
  
   */
 document.getElementById("payment-amount").innerHTML = input_val.replace(/[$]/,"");
+
 document.getElementById("sending-amount").innerHTML = input_val.replace(/[$]/,"");
 
 
@@ -283,3 +284,5 @@ document.getElementById("sending-amount").innerHTML = input_val.replace(/[$]/,""
 		console.log(text);
 	});
 })(jQuery);
+
+

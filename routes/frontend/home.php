@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
         Route::get('banks', [SearchController::class, 'getListOfBanks'])->name('bank.list');
 
 
-
+Route::get('/conversion', [TransactionController::class, 'currencyConversion'])->name('currency.convert');
 
         Route::post('bank/save', [BankAccountController::class, 'saveABank'])->name('bank.save');
 

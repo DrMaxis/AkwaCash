@@ -119,4 +119,6 @@ class SearchController extends Controller
 
           return $bankArray;
     }
+
+   
 }
