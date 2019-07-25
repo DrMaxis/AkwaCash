@@ -54,8 +54,8 @@
                                                    
                                                 </div>
                             
-                                                <h5 class="card-title mb-2 text-white text-center">{{ $logged_in_user->account()->first()->bank->bank_name }}</h5>
-                                                <h6 class="card-subtitle mb-3 text-white text-center">Account Ending in {{ substr($logged_in_user->account()->first()->bank->account_number, -4) }}</h6>
+                                                <h5 class="card-title mb-2 text-white text-center">{{ $logged_in_user->account->banks->first()->bank_name }}</h5>
+                                                <h6 class="card-subtitle mb-3 text-white text-center">Account Ending in {{ substr($logged_in_user->account->banks->first()->account_number, -4) }}</h6>
                             
                                                 <div class="row bg-light-secondary text-center">
                                                    

@@ -2,9 +2,7 @@
 @section('meta')
 
 <script>
-
-
-const sendMoneyUrl = "{{route('frontend.user.sendcash')}}"; 
+  const sendMoneyUrl = "{{route('frontend.user.sendcash')}}"; 
 var token = '{{Session::token()}}';
 const getUserUrl = "{{route('frontend.user.search.get')}}";
 const searchForUserUrl = "{{route('frontend.user.search')}}";
@@ -32,10 +30,9 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
 
 
 
-.off{
-  display:!important none;
-}
-
+  .off {
+    display:  !important none;
+  }
 </style>
 
 @endsection
@@ -44,25 +41,26 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
 
 
 <div class="container-fluid bg-light-opac">
-    <div class="row">
-        <div class="container my-3 main-container">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h2 class="content-color-primary page-title">Your Finances</h2>
-                    <p class="content-color-secondary page-sub-title">View your Cash Card</p>
-                </div>
-                <div class="col-auto">
-                    <button class="btn btn-rounded pink-gradient text-uppercase" data-toggle="modal" data-target="#createOrder"><i class="material-icons">add</i> <span class="text-hide-xs">Cash Card</span></button>
-                </div>
-            </div>
+  <div class="row">
+    <div class="container my-3 main-container">
+      <div class="row align-items-center">
+        <div class="col">
+          <h2 class="content-color-primary page-title">Your Finances</h2>
+          <p class="content-color-secondary page-sub-title">View your Cash Card</p>
         </div>
+        <div class="col-auto">
+          <button class="btn btn-rounded pink-gradient text-uppercase" data-toggle="modal" data-target="#createOrder"><i
+              class="material-icons">add</i> <span class="text-hide-xs">Cash Card</span></button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <!-- content page -->
 
 
 <div class="container-fluid mt-4 main-container">
-   
+
   <div class="row">
 
     <div class="col-12 col-md-12">
@@ -77,7 +75,8 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
           </div>
         </div>
         <div class="card-body">
-          <h1 id="test" class="mt-4"><span class="font-weight-light">$</span> {{$logged_in_user->account()->first()->account_balance}}</h1>
+          <h1 id="test" class="mt-4"><span class="font-weight-light">$</span>
+            {{$logged_in_user->account()->first()->account_balance}}</h1>
           <p class="small mb-1 text-success "><i class="material-icons icon-sm">arrow_drop_up</i> $250
           </p>
         </div>
@@ -85,7 +84,8 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
           <div class="media">
             <div class="media-body">
               <h5 class="content-color-primary mb-0">Latest Transaction</h5>
-              <p class="content-color-secondary mb-0 small"><span class="content-color-primary">$340 Recieved </span> from Trevor</p>
+              <p class="content-color-secondary mb-0 small"><span class="content-color-primary">$340 Recieved </span>
+                from Trevor</p>
             </div>
           </div>
         </div>
@@ -114,9 +114,20 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
               <div class="col-12 col-md-4">
 
                 <form method="post" action="#">
-                  <label for="currency-field">Enter Amount</label>
+                  {{-- <label for="currency-field">Enter Amount</label>
                   <input type="text" name="currency-field" id="currency-field" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency"
-                    placeholder="$0.00">
+                    placeholder="$0.00"> --}}
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">$</span>
+                    </div>
+                    <input type="text" name="currency-field" id="currency-field" class="form-control"
+                      aria-label="Amount (to the nearest dollar)">
+                    <div class="input-group-append">
+                      <span class="input-group-text">.00</span>
+                    </div>
+                  </div>
                 </form>
 
               </div>
@@ -170,7 +181,7 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
               <div class="col-4 col-md-4 text-center digit " data-number="0">
                 0
               </div>
-              <div class="col-4 col-md-4 text-center digit " >
+              <div class="col-4 col-md-4 text-center digit ">
                 x
               </div>
             </div>
@@ -179,113 +190,230 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
               <div class="col-6 col-md-4 text-center digit " data-toggle="modal" data-target="#request">
                 Request
               </div>
-              <div class="col-6 col-md-4 text-center digit " data-toggle="modal" data-target="#send" >
+              <div class="col-6 col-md-4 text-center digit " data-toggle="modal" data-target="#send">
                 Pay
 
               </div>
 
             </div>
 
+
+
+
+
+
+<div class="modal fade " id="card-input" tabindex="-1" role="dialog">
+                              <div class="modal-dialog  modal-sm modal-dialog-centered " role="document">
+                                <div class="modal-content box-shadow pink-gradient">
+
+                                  <div class="modal-body text-center pr-4 pl-4">
+                                      <div class="card mb-4">
+
+                                        <div class="card-body">
+                                          <div class="row ">
+                                            <div class="col-lg-12 col-md-12 text-center">
+                                              <img src="img/logo.png" alt="" class="mw-100 mt-4">
+                                              <br>
+                                            </div>
+                                          </div>
+                                          <br>
+                                          <hr>
+                                          <div class="row ">
+                                            <div class="col-lg-12 col-md-12">
+                                              <div class="form-group ">
+                                                <label>Card holder Name</label>
+                                                <input type="text" class="form-control" placeholder="">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="row ">
+                                            <div class="col-lg-12 col-md-12">
+                                              <div class="form-group ">
+                                                <label>Card Number</label>
+                                                <input type="text" class="form-control" placeholder="">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="row ">
+                                            <div class="col-6 col-md-6 pr-1">
+                                              <div class="form-group ">
+                                                <label>Expiry Date</label>
+                                                <select class="form-control">
+                                                  <option>Jan</option>
+                                                  <option>Fab</option>
+                                                  <option>Mar</option>
+                                                  <option>Apr</option>
+                                                  <option>May</option>
+                                                  <option>Jun</option>
+                                                  <option>Jul</option>
+                                                  <option>Aug</option>
+                                                  <option>Sep</option>
+                                                  <option>Oct</option>
+                                                  <option>Nov</option>
+                                                  <option>Dec</option>
+                                                </select>
+                                              </div>
+                                            </div>
+                                            <div class="col-3 col-md-3 px-1">
+                                              <div class="form-group ">
+                                                <label>&nbsp;</label>
+                                                <select class="form-control">
+                                                  <option>2017</option>
+                                                  <option>2018</option>
+                                                  <option>2019</option>
+                                                  <option>2020</option>
+                                                  <option>2021</option>
+                                                  <option>2022</option>
+                                                  <option>2023</option>
+                                                  <option>2024</option>
+                                                  <option>2025</option>
+                                                  <option>2026</option>
+                                                  <option>2027</option>
+                                                  <option>2028</option>
+                                                </select>
+                                              </div>
+                                            </div>
+                                            <div class="col-3 col-md-3 pl-1">
+                                              <div class="form-group ">
+                                                <label>CVV</label>
+                                                <input class="form-control" placeholder="CVV">
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="card-footer">
+                                          <button class="btn btn-secondary">Cancel</button>
+                                          <button class="btn btn-success float-right">Submit</button>
+                                        </div>
+                                      </div>
+                                    
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+
+
             <!-- Modal -->
             <div class="modal fade" id="send" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog  modal-sm modal-dialog-centered " role="document">
                 <div class="modal-content box-shadow pink-gradient">
                   <div class="modal-header border-0  px-0">
-                      <div class="" style="padding: 3px;">
-                          <h5 class="card-title mb-0" style="font-size: 0.8rem;"><span id="payment-amount">0.00</span> <span> {{$logged_in_user->account->default_currency}}</span> | 
-                            
-                            <span>
-                              <a  id="payment-method" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-style: underline" >
+                    <div class="" style="padding: 3px;">
+                      <h5 class="card-title mb-0" style="font-size: 0.8rem;"><span id="payment-amount">0.00</span>
+                        <span> {{$logged_in_user->account->default_currency}}</span> |
 
-                                {{$logged_in_user->account->default_payment_method}}
-                                
-                                
-                              
-                              
-                              </a>
-                              <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                @foreach($logged_in_user->account->payment_methods as $method) 
+                        <span>
+                          <a id="payment-method" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" style="text-style: underline" data-paymentType="{{$logged_in_user->account->default_payment_method['paymentType'] }}">
 
-<a class="dropdown-item payment-option" data-reference="{{$method['id']}}">{{$method['name']}}</a>
-                                   <div class="dropdown-divider"></div>
-                                @endforeach
-                                   
-                                @if($logged_in_user->account->account_phone != null) 
+                            {{$logged_in_user->account->default_payment_method['paymentMethod'] }}
 
-                                <a class="dropdown-item payment-option">{{$logged_in_user->phone_network}} | {{substr($logged_in_user->phone_number, -4)}}</a>
-                                @endif
-                                
-                               </div>
-                            </span>
+
+
+
+                          </a>
+                          <div class="dropdown-menu" x-placement="bottom-start"
+                            style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                            @foreach($logged_in_user->account->payment_methods as $method)
+
+                            <a class="dropdown-item payment-option"
+                              data-reference="{{$method['id']}}" data-paymentType="{{$method['type']}}">{{$method['name']}}</a>
+                            <div class="dropdown-divider"></div>
+                            @endforeach
+
+                            @if($logged_in_user->account->account_phone != null)
+
+                            <a class="dropdown-item payment-option" data-paymentType="mobile" >{{$logged_in_user->phone_network}} |
+                              {{substr($logged_in_user->phone_number, -4)}}</a>
+                            @endif
+                            <div class="dropdown-divider"></div>
+                            @if($logged_in_user->account->cardReferences->first() == null)
+                            <a class="dropdown-item payment-option" data-toggle="modal" data-target="#card-input" data-paymentType="card">Pay
+                              With Card</a>
+
                             
-                            
-                           </div> 
+                            @endif
+                          </div>
+                        </span>
+
+
+                    </div>
                     <div class="col text-right">
                       <div class="dropdown">
-                        <button class="btn btn-link btn-sm text-secondary rounded-0 dropdown-toggle float-right icon" data-toggle="dropdown" aria-haspopup="true"
-                          aria-expanded="true" type="button">
+                        <button class="btn btn-link btn-sm text-secondary rounded-0 dropdown-toggle float-right icon"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" type="button">
                           <i class="fa fa-ellipsis-v"></i>
-                      </button>
+                        </button>
                         <div class="dropdown-menu dropdown-menu-right">
                           <a class="dropdown-item" href="#">
-                              <i class="fa fa-exclamation-circle text-secondary"></i> Report a problem</a>
+                            <i class="fa fa-exclamation-circle text-secondary"></i> Report a problem</a>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="modal-body text-center pr-4 pl-4 sendmoney">
-                        <div class="input-group mb-2">
-                            <input  type="text" class="form-control border-light" id="livesearch-send" data-baseCurrency={{$logged_in_user->account->default_currency}} placeholder="To: Name, $username, Email..">
-                          </div>
-                   
-                          <div class="input-group mb-2">
-                            <input  type="text" class="form-control border-light" placeholder="For: Plantains, Casava, Mangos...">
-                          </div>
-                    
-                   {{-- <div class="input-group mb-3">
+                    <div class="input-group mb-2">
+                      <input type="text" class="form-control border-light" id="livesearch-send"
+                        data-baseCurrency={{$logged_in_user->account->default_currency}}
+                        placeholder="To: Name, $username, Email..">
+                    </div>
+
+                    <div class="input-group mb-2">
+                      <input type="text" class="form-control border-light"
+                        placeholder="For: Plantains, Casava, Mangos...">
+                    </div>
+
+                    {{-- <div class="input-group mb-3">
                      
 
 
-                      <input type="text" class="form-control" id="currency-input" data-transactionType="{{$logged_in_user->account()->first()->default_funding}}" aria-label="Text input with dropdown button">
+                      <input type="text" class="form-control" id="currency-input" data-transactionType="{{$logged_in_user->account()->first()->default_funding}}"
+                    aria-label="Text input with dropdown button">
 
 
-                      <div class="input-group-append">
-                          <button class="btn btn-danger dropdown-toggle funding-button" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pay With
-                          </button>
-                          <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(420px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                    <div class="input-group-append">
+                      <button class="btn btn-danger dropdown-toggle funding-button" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Pay With
+                      </button>
+                      <div class="dropdown-menu" x-placement="bottom-start"
+                        style="position: absolute; transform: translate3d(420px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
 
-@forelse($paymentProviders as $provider) 
+                        @forelse($paymentProviders as $provider)
 
-@if($provider != null)
-<a class="dropdown-item" href="#"><span class="funding-button-text"> {{$provider}} </span></a>
-@else 
-@endif
- @empty 
-        
-        
+                        @if($provider != null)
+                        <a class="dropdown-item" href="#"><span class="funding-button-text"> {{$provider}} </span></a>
+                        @else
+                        @endif
+                        @empty
 
-@endforelse
- <a class="dropdown-item" href="#"><span class="funding-button-text">Mobile Account</span></a>
- <a class="dropdown-item" href="#"><span class="funding-button-text">Bank Account</span></a>
- <a class="dropdown-item" href="#"><span class="funding-button-text">Credit or Debit</span></a> 
-                           
-                              <div role="separator" class="dropdown-divider"></div>
-                              
-                              
-                              
-                              <a class="dropdown-item" href="#"><span class="funding-button-text">Other</span></a>
-                          </div>
+
+
+                        @endforelse
+                        <a class="dropdown-item" href="#"><span class="funding-button-text">Mobile Account</span></a>
+                        <a class="dropdown-item" href="#"><span class="funding-button-text">Bank Account</span></a>
+                        <a class="dropdown-item" href="#"><span class="funding-button-text">Credit or Debit</span></a>
+
+                        <div role="separator" class="dropdown-divider"></div>
+
+
+
+                        <a class="dropdown-item" href="#"><span class="funding-button-text">Other</span></a>
                       </div>
-                      --}}
+                    </div>
+                    --}}
                   </div>
                   <div class="alert alert-info" style="font-size: 0.8rem;">
                     <i class="fas fa-info-circle"></i>
 
-                      
-                     <span id="sending-amount"> 0.00</span> <span id="sending-currency"></span> <span> will be sent to </span> <span id="send-recipient-name">John McMohan </span>
 
-                    </div>
-                {{--   <div class="latest-transaction">
+                    <span id="sending-amount"> 0.00</span> <span id="sending-currency"></span> <span> will be sent to
+                    </span> <span id="send-recipient-name">John McMohan </span>
+
+                  </div>
+                  {{--   <div class="latest-transaction">
                     <div class="card mb-4">
                      
                         <div class="card-body">
@@ -304,32 +432,35 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
                        
                     </div>
                 </div> --}}
-                    <div class="text-center">
-                      <br>
-                      <br>
-                     <button class="btn btn-circle btn-outline-light btn-block col send-money">Send</button>
-                    </div>
+                  <div class="text-center">
                     <br>
+                    <br>
+                    <button class="btn btn-circle btn-outline-light btn-block col send-money">Send</button>
                   </div>
+                  <br>
+                </div>
 
 
-                  <div class="transaction-loader off">
-    
-                    <div class="row">
-                        
-                        <div class="col-12">
-                
-                <div class="payment-loader payment-loader4">
-                  <div>
-                    <div>
-                      <div>
+                <div class="transaction-loader off">
+
+                  <div class="row">
+
+                    <div class="col-12">
+
+                      <div class="payment-loader payment-loader4">
                         <div>
                           <div>
                             <div>
                               <div>
                                 <div>
                                   <div>
-                                    <div></div>
+                                    <div>
+                                      <div>
+                                        <div>
+                                          <div></div>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -337,120 +468,123 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
                           </div>
                         </div>
                       </div>
+
                     </div>
                   </div>
                 </div>
-                            
-                        </div>
+
+
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Modal -->
+          <div class="modal fade" id="request" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog  modal-sm modal-dialog-centered " role="document">
+              <div class="modal-content box-shadow pink-gradient">
+                <div class="modal-header border-0  px-0">
+                  <div class="col-6">
+                    <h5 class="card-title mb-0">Request Payment</h5>
+                  </div>
+                  <div class="col text-right">
+                    <div class="dropdown">
+                      <button class="btn btn-link btn-sm text-secondary rounded-0 dropdown-toggle float-right icon"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" type="button">
+                        <i class="fa fa-ellipsis-v"></i>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#">
+                          <i class="fa fa-exclamation-circle text-secondary"></i> Report a problem</a>
+                      </div>
                     </div>
+                  </div>
                 </div>
+                <div class="modal-body text-center pr-4 pl-4">
+                  <figure class="avatar avatar-120 mx-auto">
+                    <img src="img/user1.png" class="recipiant-avi" alt="user image">
+                  </figure>
+                  <h5 class="my-3 f-light recipiant">John McMohan</h5>
 
 
+
+                  <div class="input-group mb-2">
+                    <input type="text" class="form-control border-light" id="livesearch-request"
+                      placeholder="To: Name, $username, Email..">
+                  </div>
+
+                  <div class="input-group mb-2">
+                    <input type="text" class="form-control border-light"
+                      placeholder="For: Plantains, Casava, Mangos...">
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="currency-input"
+                      aria-label="Text input with dropdown button">
+                    <div class="input-group-append">
+                      <button class="btn btn-danger dropdown-toggle funding-button" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Funding
+                      </button>
+                      <div class="dropdown-menu" x-placement="bottom-start"
+                        style="position: absolute; transform: translate3d(420px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                        <a class="dropdown-item" href="#"><span class="button-text">MTN</span></a>
+                        <a class="dropdown-item" href="#"><span class="button-text">Bank Of Ghana</span></a>
+                        <a class="dropdown-item" href="#"><span class="button-text">Visa</span></a>
+                        <div role="separator" class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#"><span class="button-text">Other</span></a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="latest-transaction">
+                    <div class="card mb-4">
+
+                      <div class="card-body">
+
+                        <div class="media">
+                          <figure class="avatar avatar-50 mr-3">
+                            <img src="img/user1.png" alt="Generic placeholder image">
+                          </figure>
+                          <div class="media-body">
+                            <h5 class="content-color-primary mb-0">Last Contact</h5>
+                            <p class="content-color-secondary mb-0 small"><span class="content-color-primary">$255
+                                Recieved </span> from John Doe</p>
+                          </div>
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <br>
+                    <br>
+                    <button class="btn btn-circle btn-outline-light btn-block col">Send</button>
+                  </div>
+                  <br>
                 </div>
               </div>
             </div>
 
 
-              <!-- Modal -->
-              <div class="modal fade" id="request" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog  modal-sm modal-dialog-centered " role="document">
-                    <div class="modal-content box-shadow pink-gradient">
-                      <div class="modal-header border-0  px-0">
-                        <div class="col-6">
-                          <h5 class="card-title mb-0">Request Payment</h5>
-                        </div>
-                        <div class="col text-right">
-                          <div class="dropdown">
-                            <button class="btn btn-link btn-sm text-secondary rounded-0 dropdown-toggle float-right icon" data-toggle="dropdown" aria-haspopup="true"
-                              aria-expanded="true" type="button">
-                              <i class="fa fa-ellipsis-v"></i>
-                          </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                              <a class="dropdown-item" href="#">
-                                  <i class="fa fa-exclamation-circle text-secondary"></i> Report a problem</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-body text-center pr-4 pl-4">
-                        <figure class="avatar avatar-120 mx-auto">
-                          <img src="img/user1.png" class="recipiant-avi" alt="user image">
-                            </figure>
-                            <h5 class="my-3 f-light recipiant">John McMohan</h5>
-                        
-                       
-                            
-                            <div class="input-group mb-2">
-                                <input  type="text" class="form-control border-light" id="livesearch-request" placeholder="To: Name, $username, Email..">
-                              </div>
-                       
-                              <div class="input-group mb-2">
-                                <input  type="text" class="form-control border-light" placeholder="For: Plantains, Casava, Mangos...">
-                              </div>
-                        
-                        <div class="input-group mb-3">
-                          <input type="text" class="form-control" id="currency-input" aria-label="Text input with dropdown button">
-                          <div class="input-group-append">
-                              <button class="btn btn-danger dropdown-toggle funding-button" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Funding
-                              </button>
-                              <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(420px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                  <a class="dropdown-item" href="#"><span class="button-text">MTN</span></a>
-                                  <a class="dropdown-item" href="#"><span class="button-text">Bank Of Ghana</span></a>
-                                  <a class="dropdown-item" href="#"><span class="button-text">Visa</span></a>
-                                  <div role="separator" class="dropdown-divider"></div>
-                                  <a class="dropdown-item" href="#"><span class="button-text">Other</span></a>
-                              </div>
-                          </div>
-                      </div>
 
-                      <div class="latest-transaction">
-                        <div class="card mb-4">
-                         
-                            <div class="card-body">
-                                
-                                <div class="media">
-                                    <figure class="avatar avatar-50 mr-3">
-                                        <img src="img/user1.png" alt="Generic placeholder image">
-                                    </figure>
-                                    <div class="media-body">
-                                      <h5 class="content-color-primary mb-0">Last Contact</h5>
-                                      <p class="content-color-secondary mb-0 small"><span class="content-color-primary">$255 Recieved </span> from John Doe</p>
-                                    </div>
-                                   
-                                </div>
-                            </div>
-                           
-                        </div>
-                    </div>
-                        <div class="text-center">
-                          <br>
-                          <br>
-                         <button class="btn btn-circle btn-outline-light btn-block col">Send</button>
-                        </div>
-                        <br>
-                      </div>
-                    </div>
-                  </div>
-
-
-              
-                </div>
-
-                
           </div>
 
- 
 
         </div>
 
-      </div>
-    </div>
 
+
+      </div>
+
+    </div>
   </div>
+
 </div>
-  <!-- content page ends -->
+</div>
+<!-- content page ends -->
 @endsection
- 
+
 @section('page-scripts')
 
 <script src="{{asset('js/MobileMoneyTransaction.js')}}"></script>
@@ -460,8 +594,7 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
 
 
 <script>
-
-$(function() {
+  $(function() {
 
   $('.payment-option').on('click', function() {
     var contents = $(this).text();
@@ -480,7 +613,3 @@ $(function() {
 
 </script>
 @endsection
-
-
-
-

@@ -31,7 +31,7 @@ $('.sendmoney').remove();
 $.ajax({
   method: 'POST',
   url: sendMoneyUrl,
-  data: {amount: parseInt(amount), recipiant: recipiant, currency:currency, transaction_type: transaction_type, _token: token},
+  data: {amount: parseFloat(amount).toFixed(2), recipiant: recipiant, currency:currency, transaction_type: transaction_type, _token: token},
   success: function(e) {
             console.log(e);   
        $('.transaction-loader').addClass('off');

@@ -270,7 +270,6 @@ function formatCurrency(input, blur) {
  
   */
 document.getElementById("payment-amount").innerHTML = input_val.replace(/[$]/,"");
-
 document.getElementById("sending-amount").innerHTML = input_val.replace(/[$]/,"");
 
 
@@ -286,3 +285,11 @@ document.getElementById("sending-amount").innerHTML = input_val.replace(/[$]/,""
 })(jQuery);
 
 
+$(function() {
+
+    if($('#payment-method').text() == "Select") {
+        $('#payment-method').text('Please Select A Payment Option');
+    } else if($('#payment-method').text() == 'Cash Balance') {
+        $('#payment-method').attr('data-paymentMethodType', 'Balance');
+    }
+})

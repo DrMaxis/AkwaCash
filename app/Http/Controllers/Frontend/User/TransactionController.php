@@ -198,9 +198,39 @@ return response()->json($conversion);
 
     //transfer from customer Debit/Credit Card to receipant user account balance
 
-    public function userCardTransaction()
+    public function userCardTransaction($request)
     {
+        $transactionRecipiant = Account::where('account_owner', '=', $request['recipiant'])->get()->first();
+        $sender = auth()->user();
+        // collect required data from request & db
 
+        $data = array(
+            'PBFPubKey' => env('RAVE_PUBLIC_KEY'),
+            'currency' => 'GHS',
+            'country' => 'GH',
+            'payment_type' => 'mobilemoneygh',
+            'amount' => $request['amount'],
+            'phonenumber' => $sender->phone_number,
+            'firstname' => $sender->first_name,
+            'lastname' => $sender->last_name,
+            'network' => $sender->phone_network,
+            'email' => $sender->email,
+            'IP' => Request::ip(),
+            'txRef' => 'GMM-DIR-' . Str::random(8),
+            'orderRef' => 'GMM-DIRF-' . Str::random(16),
+            'is_mobile_money_gh' => 1,
+            /* 'device_fingerprint' => '' */
+            'transaction_type' => $request['transaction_type'],
+        );
+
+        $transaction = $this->transactionRepository->createGhanaMobileMoneyTransaction($data, $transactionRecipiant);
+
+        if ($transaction) {
+            event(new DirectGhanaMobileMoneyTransactionCreated($transaction, $sender));
+            return response()->json('Transaction Accepted, Pending User Verification');
+        } else {
+            throw new GeneralException('Problem with the request');
+        }
         // charge the card
 
 

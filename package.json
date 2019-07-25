@@ -67,6 +67,7 @@
     },
     "dependencies": {
         "intl-tel-input": "^15.0.2",
+        "npm": "^6.10.1",
         "swiper": "^4.5.0",
         "vue-material": "^1.0.0-beta-10.2"
     }

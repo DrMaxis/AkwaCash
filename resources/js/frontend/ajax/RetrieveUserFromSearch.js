@@ -13,20 +13,16 @@ input.change(function() {
         $(".recipient-avi").attr("src", w.avatar_location);
         $("#sending-currency").text(w.default_currency);
 
-        var paymentAmount = parseFloat($('#payment-amount').text());
+        var paymentAmount = $('#payment-amount').text();
+        paymentAmount = paymentAmount.replace(/\,/g,'');
+        paymentAmount = parseFloat(paymentAmount).toFixed(2);
         var factorCurrency = w.default_currency;
 
         console.log(
-            determineConfluece(paymentAmount, baseCurrency, factorCurrency)
+            paymentAmount, baseCurrency, factorCurrency
         );
-        $("input[data-type='currency']").on({
-          change: function() {
-            determineConfluece(paymentAmount, baseCurrency, factorCurrency)
-          },
-          keyup: function() {
-            determineConfluece(paymentAmount, baseCurrency, factorCurrency)
-          }
-      });
+        determineConfluece(paymentAmount, baseCurrency, factorCurrency);
+       
         function determineConfluece(paymentAmount, baseCurrency, factorCurrency) {
         $.ajax({
             method: "GET",

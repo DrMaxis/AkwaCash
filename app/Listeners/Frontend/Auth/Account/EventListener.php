@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Listeners\Frontend\Auth;
+namespace App\Listeners\Frontend\Auth\Account;
 
 /**
- * Class UserEventListener.
+ * Class EventListener.
  */
-class UserEventListener
+class EventListener
 {
     /**
      * @param $event

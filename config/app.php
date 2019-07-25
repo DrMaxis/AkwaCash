@@ -170,6 +170,7 @@ return [
 
         // Package Service Providers that aren't auto-discover...
         Swap\Laravel\SwapServiceProvider::class,
+        Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
         // Application Service Providers...
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
@@ -229,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Swap' => Swap\Laravel\Facades\Swap::class,
+        'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
 
         // Package Aliases
     ],

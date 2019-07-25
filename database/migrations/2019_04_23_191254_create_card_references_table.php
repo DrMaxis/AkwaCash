@@ -19,6 +19,7 @@ class CreateCardReferencesTable extends Migration
             $table->string('account_id')->unique();
             $table->integer('reference_email')->nullable();
             $table->string('token')->unique();
+            $table->string('gateway')->nullable();
             $table->boolean('default')->default(false);
             $table->timestamps();
         });

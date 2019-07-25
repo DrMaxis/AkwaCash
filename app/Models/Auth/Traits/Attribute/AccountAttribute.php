@@ -19,14 +19,14 @@ trait AccountAttribute
             $name = $account->bank_name;
             $identifier = $account->uuid;
             $defaultMethod = $account->default_payment_method;
-            $methods[] = ['name' => $name, 'id' => $identifier, 'default' => $defaultMethod];
+            $methods[] = ['name' => $name, 'id' => $identifier, 'type'=>'bank', 'default' => $defaultMethod];
         }
 
         foreach($creditCards as $card) {
             $name = $card->name;
             $identifier = $card->uuid;
             $defaultMethod = $card->default_payment_method;
-            $methods[] = ['name' => $name, 'id' => $identifier, 'default' => $defaultMethod];
+            $methods[] = ['name' => $name, 'id' => $identifier, 'type' => 'card', 'default' => $defaultMethod];
         }
 
       
@@ -46,10 +46,10 @@ trait AccountAttribute
         } elseif ($paymentType == 'mobile') {
             $paymentMethod = $this->account_phone;
         } elseif($this->account_balance <= 0 || $this->account_balance == null) {
-            return 'Please Select A Method';
+            return 'Select';
         } else {
-            return 'Cash Balance';
+            return array('paymentMethod' => 'Cash Balance', 'paymentType' => 'cash');
         }
-        return $paymentMethod;
+        return array('paymentMethod' =>$paymentMethod, 'paymentType' => $paymentType);
     }
 }
