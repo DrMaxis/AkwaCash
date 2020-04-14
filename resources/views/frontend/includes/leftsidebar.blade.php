@@ -6,7 +6,7 @@
         </figure>
         <div class="media w-100 my-3">
             <figure class="avatar avatar-40 rounded-circle align-self-start ">
-              
+
                 <img src="{{ $logged_in_user->picture }}" alt="Generic placeholder image">
             </figure>
             <div class="media-body mx-70">
@@ -26,19 +26,28 @@
         <li class="nav-item">
                 <a href="{{ route('frontend.user.account') }}" class="nav-link {{ active_class(Active::checkRoute('frontend.user.account')) }}"><i class="material-icons icon">assignment</i>
                     <span>Account</span></a>
-    
-            </li> 
+
+            </li>
         <li class="nav-item">
             <a href="{{route('frontend.user.dashboard')}}" class="nav-link"><i class="material-icons icon">assignment</i>
                 <span>Dashboard</span></a>
 
         </li>
-        
+
+  {{--       @if($logged_in_user->account->market == null)
         <li class="nav-item">
-            <a href="javascript:void(0);" class="nav-link"><i class="material-icons icon">shopping_cart</i>
+            <a href="{{route('frontend.ecommerce.market.register')}}" class="nav-link"><i class="material-icons icon">shopping_cart</i>
                 <span>eCommerce</span></a>
 
         </li>
+        @else
+
+        <li class="nav-item">
+            <a href="{{route('frontend.ecommerce.market.index')}}" class="nav-link"><i class="material-icons icon">shopping_cart</i>
+                <span>eCommerce</span></a>
+
+        </li>
+        @endif --}}
 
         <li class="nav-item">
             <a href="javascript:void(0);" class="nav-link"><i class="material-icons icon">assignment</i>

@@ -94,12 +94,14 @@ class UserRepository extends BaseRepository
             $user = parent::create([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
+                'username' => '$'.$data['username'],
+           /*   'phone_network' => getPhoneData($data['phone_country_code'].$data['phone_number'])->getCurrentCarrier()['name'], */
                 'email' => $data['email'],
                 'phone_number' => $data['phone_number'],
                 'password' => $data['password'],
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'active' => true,
-                
+
                 // If users require approval or needs to confirm email
                 'confirmed' => ! (config('access.users.requires_approval') || config('access.users.confirm_email')),
             ]);

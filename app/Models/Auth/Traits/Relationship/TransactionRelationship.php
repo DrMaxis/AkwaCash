@@ -31,7 +31,7 @@ trait TransactionRelationship
      */
     public function account()
     {
-        return $this->belongsTo(Account::class);
+        return $this->belongsTo(Account::class, 'account_id', 'uuid');
     }
 
     

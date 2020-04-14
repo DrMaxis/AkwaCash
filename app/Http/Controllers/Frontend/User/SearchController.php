@@ -52,7 +52,6 @@ class SearchController extends Controller
                 'last_login_at',
                 'last_name',
                 'password',
-                'phone_number',
                 'phone_number_changed_at',
                 'phone_number_confirmed',
                 'remember_token',
@@ -81,7 +80,8 @@ class SearchController extends Controller
         $data = [
             'full_name' => $user->full_name,
             'avatar_location' => $user->avatar_location ?? 'https://www.gravatar.com/avatar/64e1b8d34f425d19e1ee2ea7236d3028.jpg?s=80&d=mm&r=g',
-            'default_currency' => $user->account->default_currency
+            'default_currency' => $user->account->default_currency,
+            'phone_number' => $user->phone_number
 
         ];
 

@@ -52,4 +52,16 @@ trait AccountAttribute
         }
         return array('paymentMethod' =>$paymentMethod, 'paymentType' => $paymentType);
     }
+
+    public function getLatestTransactionAttribute() {
+       
+        
+        $latestTransaction = $this->transactions()->latest('created_at')->first();
+        return $latestTransaction;
+    }
+
+    
 }
+
+
+

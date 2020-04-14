@@ -28,7 +28,7 @@ class SendMoneyRequest extends FormRequest
     {
         return [
             'amount' => ['required'],
-            'recipiant' => ['required'],
+            'recipient' => ['required'],
             'transaction_type' => ['required'],
            
         ];

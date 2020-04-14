@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Helpers\Auth\SocialiteHelper;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\Frontend\Auth\RegisterRequest;
 use App\Events\Frontend\Auth\UserRegistered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Repositories\Frontend\Auth\UserRepository;
@@ -72,9 +72,9 @@ class RegisterController extends Controller
         abort_unless(config('access.registration'), 404);
 
 
-        $user = $this->userRepository->create($request->only('first_name', 'last_name','email', 'password', 'phone_number'));
+        $user = $this->userRepository->create($request->only('first_name', 'last_name','email', 'password', 'phone_number','username'));
 
-        $userData = array('id' => $user->id,'email' => $user->email, 'phone_nmumber' => $user->phone_number, 'name' => $user->name);
+        $userData = array('id' => $user->id,'email' => $user->email, 'phone_nmumber' => $user->phone_number, 'name' => $user->name, 'username' => $user->username);
         $account = $this->accountRepository->create($userData);
         // If the user must confirm their email or their account requires approval,
         // create the account but don't log them in.

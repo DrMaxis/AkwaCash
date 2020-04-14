@@ -3,6 +3,7 @@
 namespace App\Models\Auth\Traits\Relationship;
 
 use App\Models\Auth\User;
+use App\Models\Auth\Market;
 use App\Models\Auth\BankAccount;
 use App\Models\Auth\Transaction;
 use App\Models\Auth\CardReference;

@@ -5,6 +5,7 @@ namespace App\Models\Auth;
 use App\Models\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Auth\Traits\Method\MarketMethod;
+use App\Models\Auth\Traits\Attribute\MarketAttribute;
 use App\Models\Auth\Traits\Relationship\MarketRelationship;
 
 
@@ -38,17 +39,32 @@ class Market extends Model
 
     protected $fillable = [
 
-        'user_id',
+        'account_id',
+        'name',
+        'slug',
         'default_currency',
-        'Market_balance',
-        'Market_owner',
-        'Market_email',
-        'Market_type',
-        'Market_phone',
-        'Market_phone_network',
-        'default_funding',
-        'last_updated',
-        'closed'
+        'about_market',
+        'buisness_type',
+        'offical_website',
+        'selling_platforms',
+        'managing_address',
+        'operating_address',
+        'country_of_origin',
+        'tax_id',
+        'year_established',
+        'number_of_employees',
+        'main_product_types',
+        'owner',
+        'phone_network',
+        'contact_email',
+        'contact_phonenumber',
+        'managing_address',
+        'operating_address',
+        'country_of_origin',
+        'pruchasing_volume',
+        'primary_sourcing_purpose',
+        'average_sourcing_frequency',
+        'supplier_qualifications',
 
     ];
 

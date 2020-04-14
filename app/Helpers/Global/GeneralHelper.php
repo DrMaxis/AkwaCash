@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 if (! function_exists('app_name')) {
     /**
      * Helper to grab the application name.
@@ -39,5 +41,43 @@ if (! function_exists('home_route')) {
         }
 
         return 'frontend.index';
+    }
+}
+
+if (!function_exists('slugify')) {
+
+    /**
+     * Transform the string to a slugified SEO friendly string
+     *
+     * @param $string
+     *
+     * @return String $string
+     * 
+     * @credit rorypicko
+     */
+    function slugify($string)
+    {
+        //Lower case everything
+        $string = strtolower($string);
+        //Make alphanumeric (removes all other characters)
+        $string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
+        //Clean up multiple dashes or whitespaces
+        $string = preg_replace("/[\s-]+/", " ", $string);
+        //Convert whitespaces and underscore to dash
+        $string = preg_replace("/[\s_]/", "-", $string);
+        
+        return $string;
+    }
+
+
+}
+
+
+if(!function_exists('getJoinYear')) {
+
+    function getJoinYear($timestamp) {
+       
+        return Carbon::createFromFormat('Y-m-d H:i:s', $timestamp)->year;
+
     }
 }

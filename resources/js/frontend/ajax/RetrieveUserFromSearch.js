@@ -10,6 +10,8 @@ input.change(function() {
         success: function(e) {}
     }).done(function(w) {
         $("#send-recipient-name").text(w.full_name);
+        $("#recipient-phone-number").attr('data-recipientPhoneNumber', w.phone_number);
+
         $(".recipient-avi").attr("src", w.avatar_location);
         $("#sending-currency").text(w.default_currency);
 

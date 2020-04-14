@@ -50,7 +50,7 @@
                                                 <h4 class="mt-2 font-weight-normal">0000 0000 0000 0000</h4>
                                                 <div class="row mt-3">
                                                     <div class="col">
-                                                        <h5 class="mb-0">John McMohan</h5>
+                                                        <h5 class="mb-0">{{$logged_in_user->name}}</h5>
                                                         <p class="mb-0 small">Card Holder</p>
                                                     </div>
                                                     <div class="col text-right">
@@ -68,7 +68,7 @@
                                                 <h4 class="mt-2 font-weight-normal">0000 0000 0000 0000</h4>
                                                 <div class="row mt-3">
                                                     <div class="col">
-                                                        <h5 class="mb-0">John McMohan</h5>
+                                                        <h5 class="mb-0">{{$logged_in_user->name}}</h5>
                                                         <p class="mb-0 small">Card Holder</p>
                                                     </div>
                                                     <div class="col text-right">
@@ -86,7 +86,7 @@
                                                 <h4 class="mt-2 font-weight-normal">0000 0000 0000 0000</h4>
                                                 <div class="row mt-3">
                                                     <div class="col">
-                                                        <h5 class="mb-0">John McMohan</h5>
+                                                        <h5 class="mb-0">{{$logged_in_user->name}}</h5>
                                                         <p class="mb-0 small">Card Holder</p>
                                                     </div>
                                                     <div class="col text-right">
@@ -104,7 +104,7 @@
                                                 <h4 class="mt-2 font-weight-normal">0000 0000 0000 0000</h4>
                                                 <div class="row mt-3">
                                                     <div class="col">
-                                                        <h5 class="mb-0">John McMohan</h5>
+                                                        <h5 class="mb-0">{{$logged_in_user->name}}</h5>
                                                         <p class="mb-0 small">Card Holder</p>
                                                     </div>
                                                     <div class="col text-right">

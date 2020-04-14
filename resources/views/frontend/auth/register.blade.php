@@ -1,5 +1,5 @@
-@extends('frontend.layouts.register') 
-@section('title', app_name() . ' | ' . __('labels.frontend.auth.register_box_title')) 
+@extends('frontend.layouts.register')
+@section('title', app_name() . ' | ' . __('labels.frontend.auth.register_box_title'))
 @section('content')
 
 
@@ -20,6 +20,9 @@
                             <!--col-->
                             <hr class="my-0"> {{ html()->label(__('validation.attributes.frontend.last_name'))->for('last_name') }} {{ html()->text('last_name')
                             ->class('form-control form-control-lg border-0') ->placeholder(__('validation.attributes.frontend.last_name'))
+                            ->attribute('maxlength', 191) ->required() }}
+                            <hr class="my-0"> {{ html()->label(__('validation.attributes.frontend.usernmae'))->for('username') }} {{ html()->text('username')
+                            ->class('form-control form-control-lg border-0') ->placeholder(__('validation.attributes.frontend.username'))
                             ->attribute('maxlength', 191) ->required() }}
                             <hr class="my-0"> {{ html()->label(__('validation.attributes.frontend.email'))->for('email') }} {{ html()->text('email')
                             ->class('form-control form-control-lg border-0') ->placeholder(__('validation.attributes.frontend.email'))

@@ -94,10 +94,10 @@ class TransactionRepository extends BaseRepository
                     'transaction_type' => $data['transaction_type'],
                     'payment_type' => 'send',
                     'bill_amount' => $data['amount'],
-                    'recipient_id' => $recipient->uuid,
-                    'recipient_email' => $recipient->account_email,
-                    'recipient_phone' => $recipient->account_phone,
-                    'currency' => 'GHS',
+                    'sender_id' => $sender->uuid,
+                    'sender_email' => $sender->account_email,
+                    'sender_phone' => $sender->account_phone,
+                    'currency' => /* $data['currency'] */ 'GHS',
                     'ipaddress' =>  $data['IP'],
                     'txRef' =>  $data['txRef'],
                     'orderRef' => $data['orderRef'],
@@ -107,6 +107,27 @@ class TransactionRepository extends BaseRepository
 
 
                 $recipient->account_balance += $data['amount'];
+
+                $transaction = parent::create([
+
+                    'account_id' => $recipient->uuid,
+                    'user_id' => $recipient->user_id,
+                    'sender_name' => $sender->name,
+                    'recipient_name' => $recipient->account_owner,
+                    'transaction_type' => $data['transaction_type'],
+                    'payment_type' => 'recieve',
+                    'bill_amount' => $data['amount'],
+                    'recipient_id' => $recipient->uuid,
+                    'recipient_email' => $recipient->account_email,
+                    'recipient_phone' => $recipient->account_phone,
+                    'currency' => /* $data['currency'] */ 'GHS',
+                    'ipaddress' =>  $data['IP'],
+                    'txRef' =>  $data['txRef'],
+                    'orderRef' => $data['orderRef'],
+                    'verified' => 1,
+
+                ]);
+
                 $recipient->save();
 
 
@@ -119,7 +140,7 @@ class TransactionRepository extends BaseRepository
 
 
     public function createInternationalBankTransaction($data, $recipient)  {
-        
+
        /*  die(print_r($data)) */;
         $sender = auth()->user();
  //set up transaction api call
@@ -189,7 +210,7 @@ class TransactionRepository extends BaseRepository
                 return $transaction;
             }
 
-        
+
     }
 }
 

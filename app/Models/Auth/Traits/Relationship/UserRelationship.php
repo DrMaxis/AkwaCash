@@ -3,6 +3,7 @@
 namespace App\Models\Auth\Traits\Relationship;
 
 use App\Models\Auth\Account;
+use App\Models\Auth\MarketManager;
 use App\Models\Auth\SocialAccount;
 use App\Models\Auth\PasswordHistory;
 
@@ -35,5 +36,12 @@ trait UserRelationship
         return $this->hasOne(Account::class);
     }
 
+      /**
+     * @return mixed
+     */
+    public function manager()
+    {
+        return $this->belongsTo(MarketManager::class);
+    }
 
 }

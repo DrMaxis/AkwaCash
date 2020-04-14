@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend\User;
 
+use App\Models\Auth\Transaction;
 use App\Http\Controllers\Controller;
 
 /**
@@ -14,9 +15,9 @@ class UserHomeController extends Controller
      */
     public function index()
     {
-
-       /*  $user = auth()->user();
-        $userAccount = $user->account()->first();
+/*  $user = auth()->user();
+        $userAccount = $user->account; */
+       /* 
         $userCard = $userAccount->cardReferences()->where('default_card', '=', 1)->get()->first();
         $userBank = $userAccount->bank->bank_name;
         $userPhone = 'MTN | '.''.$userAccount->account_phone;
@@ -27,13 +28,13 @@ class UserHomeController extends Controller
             $userPhone,
         ]; */
 
-/* 
-        $transactions = $userAccount->transactions()->get();
+
+       /*  $transactions = $userAccount->transactions()->get();
         dd($transactions); */
       
 
       
-
+       
 
 
         return view('frontend.user.index')/* ->with(['paymentProviders' => $paymentOptions]) */;

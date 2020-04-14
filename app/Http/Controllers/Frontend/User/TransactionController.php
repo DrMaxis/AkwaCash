@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request;
 use App\Repositories\Frontend\Auth\TransactionRepository;
 use App\Http\Requests\Frontend\Transaction\SendMoneyRequest;
+use App\Events\Frontend\Auth\BankAccount\BankAccountTransaction;
 use App\Http\Requests\Frontend\Transaction\ConvertCurrencyRequest;
 use App\Events\Frontend\Auth\MobileMoney\DirectGhanaMobileMoneyTransactionCreated;
 
@@ -93,6 +94,8 @@ return response()->json($conversion);
                 case 'card':
                 return  $this->payWithCard($request);
                 break;
+                case 'accountbalance';
+                return $this->payWithAccountBalance($request);
             default:
                 throw new GeneralException('Payment Type was not found');
                 break;
@@ -143,13 +146,14 @@ return response()->json($conversion);
     public function payWithGhanaMobileMoney($request)
     {
 
-        $transactionRecipiant = Account::where('account_owner', '=', $request['recipiant'])->get()->first();
+        $transactionRecipient = Account::where('account_phone', '=', $request['recipient'])->get()->first();
+        
         $sender = auth()->user();
         // collect required data from request & db
 
         $data = array(
             'PBFPubKey' => env('RAVE_PUBLIC_KEY'),
-            'currency' => 'GHS',
+            'currency' => /* $request['currency'] */ 'GHS',
             'country' => 'GH',
             'payment_type' => 'mobilemoneygh',
             'amount' => $request['amount'],
@@ -166,7 +170,7 @@ return response()->json($conversion);
             'transaction_type' => $request['transaction_type'],
         );
 
-        $transaction = $this->transactionRepository->createGhanaMobileMoneyTransaction($data, $transactionRecipiant);
+        $transaction = $this->transactionRepository->createGhanaMobileMoneyTransaction($data, $transactionRecipient);
 
         if ($transaction) {
             event(new DirectGhanaMobileMoneyTransactionCreated($transaction, $sender));
@@ -177,7 +181,7 @@ return response()->json($conversion);
 
         //after verifcation
 
-        //update the recipiant account balance
+        //update the recipient account balance
 
         // finally display confirm to customer
 

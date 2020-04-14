@@ -2,7 +2,7 @@
 @section('meta')
 
 <script>
-  const sendMoneyUrl = "{{route('frontend.user.sendcash')}}"; 
+  const sendMoneyUrl = "{{route('frontend.user.sendcash')}}";
 var token = '{{Session::token()}}';
 const getUserUrl = "{{route('frontend.user.search.get')}}";
 const searchForUserUrl = "{{route('frontend.user.search')}}";
@@ -34,7 +34,7 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
     display:  !important none;
   }
 </style>
-
+<link rel="stylesheet" href="{{asset('js/vendor/notify/jquery.notify.min.css')}}">
 @endsection
 
 @section('content')
@@ -58,6 +58,10 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
 </div>
 <!-- content page -->
 
+  {{-- {{ dd(auth()->user()->account->transactions()->where('payment_type','=', 'send')->latest('created_at')->first()) }}  --}}
+
+{{--   {{dd(auth()->user()->account->transactions()->where('payment_type','=', 'send')->latest('created_at')->first(), $logged_in_user->account->transactions()->where('payment_type','=', 'send')->latest('created_at')->first() )}} --}}
+
 
 <div class="container-fluid mt-4 main-container">
 
@@ -69,7 +73,7 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
           <div class="media">
             <div class="media-body">
               <h4 class="content-color-primary mb-0">Account Balance</h4>
-              <p class="content-color-secondary mb-0">GHS</p>
+              <p class="content-color-secondary mb-0">{{$logged_in_user->account->default_currency}}</p>
             </div>
 
           </div>
@@ -77,15 +81,53 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
         <div class="card-body">
           <h1 id="test" class="mt-4"><span class="font-weight-light">$</span>
             {{$logged_in_user->account()->first()->account_balance}}</h1>
-          <p class="small mb-1 text-success "><i class="material-icons icon-sm">arrow_drop_up</i> $250
+
+       @if($logged_in_user->account->latestTransaction->payment_type == 'send')
+          <p class="small mb-1 text-danger "><i class="material-icons icon-sm">arrow_drop_down</i> {{$logged_in_user->account->latestTransaction->bill_amount}}
           </p>
+          @elseif($logged_in_user->account->latestTransaction->payment_type == 'recieve')
+          <p class="small mb-1 text-success "><i class="material-icons icon-sm">arrow_drop_up</i> {{$logged_in_user->account->latestTransaction->bill_amount}}
+          </p>
+          @else
+          @endif
+
+
         </div>
         <div class="card-footer border-top">
           <div class="media">
             <div class="media-body">
+
               <h5 class="content-color-primary mb-0">Latest Transaction</h5>
-              <p class="content-color-secondary mb-0 small"><span class="content-color-primary">$340 Recieved </span>
-                from Trevor</p>
+
+               <p class="content-color-secondary mb-0 small">
+
+                <span class="content-color-primary">
+
+                {{$logged_in_user->account->latestTransaction->bill_amount}}
+
+        @if($logged_in_user->account->latestTransaction->payment_type == 'send')
+
+        Sent
+
+            <span> to {{$logged_in_user->account->latestTransaction->recipient_name}}</span>
+
+        @elseif($logged_in_user->account->latestTransaction->payment_type == 'recieve')
+
+        Recieved
+
+            <span> from {{$logged_in_user->account->latestTransaction->sender_name}} <span>
+
+        @else
+        @endif
+                </span>
+
+
+
+
+
+                </p>
+
+
             </div>
           </div>
         </div>
@@ -286,7 +328,7 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
                                           <button class="btn btn-success float-right">Submit</button>
                                         </div>
                                       </div>
-                                    
+
 
                                   </div>
                                 </div>
@@ -307,9 +349,9 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
 
                         <span>
                           <a id="payment-method" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" style="text-style: underline" data-paymentType="{{$logged_in_user->account->default_payment_method['paymentType'] }}">
+                            aria-expanded="false" style="text-style: underline" data-paymentType="{{$logged_in_user->account->default_payment_method['paymentType'] ?? null }}">
 
-                            {{$logged_in_user->account->default_payment_method['paymentMethod'] }}
+                            {{$logged_in_user->account->default_payment_method['paymentMethod'] ?? null }}
 
 
 
@@ -317,24 +359,24 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
                           </a>
                           <div class="dropdown-menu" x-placement="bottom-start"
                             style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                            @foreach($logged_in_user->account->payment_methods as $method)
+                           {{--  @foreach($logged_in_user->account->payment_methods as $method)
 
                             <a class="dropdown-item payment-option"
                               data-reference="{{$method['id']}}" data-paymentType="{{$method['type']}}">{{$method['name']}}</a>
                             <div class="dropdown-divider"></div>
-                            @endforeach
+                            @endforeach --}}
 
                             @if($logged_in_user->account->account_phone != null)
 
-                            <a class="dropdown-item payment-option" data-paymentType="mobile" >{{$logged_in_user->phone_network}} |
+                            <a class="dropdown-item payment-option" data-paymentType="mobilemoneygh" data-selected="false" >{{$logged_in_user->phone_network}} |
                               {{substr($logged_in_user->phone_number, -4)}}</a>
                             @endif
                             <div class="dropdown-divider"></div>
                             @if($logged_in_user->account->cardReferences->first() == null)
-                            <a class="dropdown-item payment-option" data-toggle="modal" data-target="#card-input" data-paymentType="card">Pay
+                            <a class="dropdown-item payment-option" data-toggle="modal" data-target="#card-input" data-paymentType="card" data-selected="false">Pay
                               With Card</a>
 
-                            
+
                             @endif
                           </div>
                         </span>
@@ -354,7 +396,7 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
                       </div>
                     </div>
                   </div>
-                  <div class="modal-body text-center pr-4 pl-4 sendmoney">
+                  <div class="modal-body text-center pr-4 pl-4 sendmoney-container">
                     <div class="input-group mb-2">
                       <input type="text" class="form-control border-light" id="livesearch-send"
                         data-baseCurrency={{$logged_in_user->account->default_currency}}
@@ -367,7 +409,7 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
                     </div>
 
                     {{-- <div class="input-group mb-3">
-                     
+
 
 
                       <input type="text" class="form-control" id="currency-input" data-transactionType="{{$logged_in_user->account()->first()->default_funding}}"
@@ -410,14 +452,15 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
 
 
                     <span id="sending-amount"> 0.00</span> <span id="sending-currency"></span> <span> will be sent to
-                    </span> <span id="send-recipient-name">John McMohan </span>
+                    </span> <span id="send-recipient-name"></span>
+                    <p id="recipient-phone-number" hidden data-recipientPhoneNumber=""></p>
 
                   </div>
                   {{--   <div class="latest-transaction">
                     <div class="card mb-4">
-                     
+
                         <div class="card-body">
-                            
+
                             <div class="media">
                                 <figure class="avatar avatar-50 mr-3">
                                     <img src="img/user1.png" alt="Generic placeholder image">
@@ -426,10 +469,10 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
                                   <h5 class="content-color-primary mb-0">Last Contact</h5>
                                   <p class="content-color-secondary mb-0 small"><span class="content-color-primary">$255 Recieved </span> from John Doe</p>
                                 </div>
-                               
+
                             </div>
                         </div>
-                       
+
                     </div>
                 </div> --}}
                   <div class="text-center">
@@ -587,19 +630,24 @@ const convertCurrencyUrl ="{{route('frontend.user.currency.convert')}}";
 
 @section('page-scripts')
 
-<script src="{{asset('js/MobileMoneyTransaction.js')}}"></script>
-<script src="{{asset('js/MobileMoneyTransaction.js')}}"></script>
-<script src="{{asset('js/UsernameSearch.js')}}"></script>
-<script src="{{asset('js/RetrieveUserFromSearch.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/MobileMoneyTransaction.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/UsernameSearch.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/RetrieveUserFromSearch.js')}}"></script>
 
-
+<script type="text/javascript" src="{{asset('js/vendor/notify/jquery.notify.min.js')}}"> </script>
 <script>
   $(function() {
 
   $('.payment-option').on('click', function() {
     var contents = $(this).text();
     $('a#payment-method').text(contents);
-    
+
+    if($(this).attr('data-selected') == 'false') {
+      $(this).attr('data-selected', 'true');
+      $('.payment-option').not(this).attr('data-selected', 'false');
+
+    }
+
   });
 
   $('#payment-amount').on('change', function() {
